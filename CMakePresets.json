@@ -1,0 +1,27 @@
+{
+  "version": 4,
+  "configurePresets": [
+    {
+      "name": "default-config",
+      "displayName": "Default Build",
+      "generator": "Unix Makefiles",
+      "binaryDir": "${sourceDir}/../build",
+      "cacheVariables": {
+        "CMAKE_CXX_STANDARD": "17"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "default-config",
+      "configurePreset": "default-config"
+    }
+  ],
+  "testPresets": [
+    {
+      "name": "default-test",
+      "displayName": "Run All Tests",
+      "configurePreset": "default-config"
+    }
+  ]
+}
