@@ -19,8 +19,8 @@
   ],
   "testPresets": [
     {
-      "name": "default-test",
-      "displayName": "Run All Tests",
+      "name": "unit-tests",
+      "displayName": "Run All Unit Tests",
       "configurePreset": "default-config"
     }
   ]
