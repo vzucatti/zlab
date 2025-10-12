@@ -19,7 +19,7 @@ class AbstractRadialBasisFunction{
 using AbstractRBF = AbstractRadialBasisFunction;
 
 class Bump : public AbstractRBF{
-    using Base= AbstractRBF;
+    using Base = AbstractRBF;
     public:
         Bump(scalarType radius) : Base(radius) {}
         scalarType evaluate(scalarType r) const override;
