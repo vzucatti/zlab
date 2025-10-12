@@ -13,14 +13,8 @@ add_executable( program main.cpp )
 add_subdirectory( src )
 target_link_libraries( program PRIVATE zlab )
 
-
-# Testing
-include(CTest)
-
-find_package(GTest CONFIG REQUIRED)
-
-add_executable( unit_tests test/my_tests.cpp )
-target_link_libraries( unit_tests PRIVATE zlab GTest::gtest_main GTest::gtest)
-
-include(GoogleTest)
-gtest_discover_tests(unit_tests)
+option(BUILD_TESTING "Build unit tests" ON)
+if (BUILD_TESTING)
+    include( CTest )
+    add_subdirectory(test)
+endif()
