@@ -8,6 +8,7 @@ namespace zlab{
 
 using scalarType = double;
 using integerType = int;
+using positiveIntegerType = std::size_t;
 
 scalarType evaluateSafeTolerance(scalarType = 1e2);
 
