@@ -13,6 +13,12 @@ add_executable( program main.cpp )
 add_subdirectory( src )
 target_link_libraries( program PRIVATE zlab )
 
+option( ADD_EIGEN TRUE )
+if ( ADD_EIGEN )
+    find_package(Eigen3 REQUIRED)
+    target_link_libraries( program PRIVATE Eigen3::Eigen )
+endif()
+
 option(BUILD_TESTING "Build unit tests" ON)
 if (BUILD_TESTING)
     include( CTest )
