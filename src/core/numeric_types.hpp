@@ -7,6 +7,7 @@
 namespace zlab{
 
 using scalarType = double;
+using integerType = int;
 
 scalarType evaluateSafeTolerance(scalarType = 1e2);
 
