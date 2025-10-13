@@ -1,7 +1,8 @@
 
 add_library(zlab_math STATIC
-  rbf.cpp
-  utilities.cpp
+    rbf.cpp
+    utilities.cpp
+    matrix.cpp    
 )
 
 target_include_directories(zlab_math PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
