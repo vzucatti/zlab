@@ -7,8 +7,10 @@
 
 namespace {
     using zmat = zlab::ZMatrix;
-    constexpr bool inNotDefaultConstructible = !std::is_default_constructible<zmat>::value;
-    static_assert(inNotDefaultConstructible);
+    constexpr bool isNotDefaultConstructible = !std::is_default_constructible<zmat>::value;
+    static_assert(isNotDefaultConstructible);
+    
+    
 }
 
 TEST(ZMatrix, getNumberOfRows){
