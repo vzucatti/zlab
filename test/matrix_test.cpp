@@ -9,8 +9,8 @@ namespace {
     using zmat = zlab::ZMatrix;
     constexpr bool isNotDefaultConstructible = !std::is_default_constructible<zmat>::value;
     static_assert(isNotDefaultConstructible);
-    
-    
+    constexpr bool isNotCopyConstructible = !std::is_copy_constructible<zmat>::value;
+    static_assert(isNotCopyConstructible);
 }
 
 TEST(ZMatrix, getNumberOfRows){
