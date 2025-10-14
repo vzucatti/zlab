@@ -25,8 +25,8 @@ class ZMatrix{
         scalarType& operator()(integerType, integerType);
         const scalarType& operator()(integerType, integerType) const;
 
-        positiveIntegerType getNumberOfRows() { return numberOfRows; }
-        positiveIntegerType getNumberOfColumns() { return numberOfColumns; }
+        positiveIntegerType getNumberOfRows() const { return numberOfRows; }
+        positiveIntegerType getNumberOfColumns() const { return numberOfColumns; }
         
         void print() const;
 };
