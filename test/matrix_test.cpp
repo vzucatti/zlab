@@ -1,7 +1,15 @@
 
+#include <type_traits>
+
 #include "gtest/gtest.h"
 
 #include "matrix.hpp"
+
+namespace {
+    using zmat = zlab::ZMatrix;
+    constexpr bool inNotDefaultConstructible = !std::is_default_constructible<zmat>::value;
+    static_assert(inNotDefaultConstructible);
+}
 
 TEST(ZMatrix, getNumberOfRows){
     zlab::integerType expectedNumberOfRows = 3;
