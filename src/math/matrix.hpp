@@ -31,4 +31,22 @@ class ZMatrix{
         void print() const;
 };
 
+template <typename matrixType>
+class Matrix{
+        matrixType matrix;
+    public:
+        Matrix(integerType, integerType, scalarType=0);
+        
+        void print() const { matrix.print(); }
+};
+
+template <typename matrixType>
+Matrix<matrixType>::Matrix(
+    integerType numberOfRows, 
+    integerType numberOfColumns,
+    scalarType fillValue) : 
+    matrix(numberOfRows, numberOfColumns, fillValue){
+    assert(numberOfRows > 0 && numberOfColumns > 0);
+}
+
 } // end namespace zlab
