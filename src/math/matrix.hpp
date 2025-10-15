@@ -42,6 +42,7 @@ class EigenMatrix{
         Eigen::Matrix<scalarType, Eigen::Dynamic, Eigen::Dynamic> matrix;
     public:
         EigenMatrix() = delete;
+        EigenMatrix(const EigenMatrix&) = delete;
         EigenMatrix(integerType, integerType, scalarType=0);
         
         void print() const { std::cout << matrix << std::endl; }
