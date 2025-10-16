@@ -36,6 +36,12 @@ ZMatrix& ZMatrix::operator=(ZMatrix&& matrix){
     return *this;
 }
 
+ZMatrix ZMatrix::copy() const {
+    ZMatrix clone(this->numberOfRows, this->numberOfColumns);
+    clone.data = this->data;
+    return std::move(clone);
+}
+
 positiveIntegerType ZMatrix::computeVectorIndex(integerType row, integerType column) const {
     assert(row < numberOfRows && column < numberOfColumns);
     return row * numberOfColumns + column;

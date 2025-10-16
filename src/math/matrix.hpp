@@ -27,6 +27,8 @@ class ZMatrix{
         ZMatrix& operator=(const ZMatrix&);
         ZMatrix& operator=(ZMatrix&&);
         
+        ZMatrix copy() const;
+        
         scalarType& operator()(integerType, integerType);
         const scalarType& operator()(integerType, integerType) const;
 
