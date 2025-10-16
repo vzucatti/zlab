@@ -28,3 +28,14 @@ TEST(ZMatrix, getNumberOfColumns){
     auto numberOfColumns = matrix.getNumberOfColumns();
     ASSERT_EQ(numberOfColumns, expectedNumberOfColumns);    
 }
+
+TEST(ZMatrix, deepCopy){
+    zlab::ZMatrix matrix(3,3,2.5);
+    auto newMatrix = matrix.copy();
+    auto tolerance = zlab::evaluateSafeTolerance();
+    for (auto i=0; i < matrix.getNumberOfRows(); i++){
+        for (auto j=0; j < matrix.getNumberOfColumns(); j++){
+            EXPECT_NEAR(matrix(i,j), newMatrix(i,j), tolerance); 
+        }
+    }
+}
