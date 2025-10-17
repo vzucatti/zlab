@@ -38,6 +38,8 @@ class ZMatrix{
         void print() const;
 };
 
+void axpy(scalarType, const ZMatrix&, ZMatrix&);
+
 #ifdef ADD_EIGEN
 
 class EigenMatrix{
