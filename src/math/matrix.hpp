@@ -37,6 +37,7 @@ class ZMatrix{
 
         positiveIntegerType getNumberOfRows() const { return numberOfRows; }
         positiveIntegerType getNumberOfColumns() const { return numberOfColumns; }
+        positiveIntegerType get_number_of_elements() const;
         
         void print() const;
 };

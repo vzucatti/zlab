@@ -55,6 +55,10 @@ const scalarType& ZMatrix::operator()(integerType row, integerType column) const
     return data[computeVectorIndex(row,column)];
 }
 
+positiveIntegerType ZMatrix::get_number_of_elements() const{
+    return numberOfRows*numberOfColumns;
+}
+
 void ZMatrix::print() const {
     using int_ = positiveIntegerType;
     for(int_ row=0; row < numberOfRows; row++){
