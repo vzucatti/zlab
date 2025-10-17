@@ -65,3 +65,13 @@ TEST(ZMatrix, axpy){
         }
     }
 }
+
+TEST(ZVector, axpy){
+    zlab::ZVector y(2,2), x(2,2), expectedVector(2,22);
+    zlab::scalarType a{10};
+    zlab::axpy(a,x,y);
+    auto tolerance = zlab::evaluateSafeTolerance();
+    for (auto i=0; i < y.length(); i++){
+        EXPECT_NEAR(y[i], expectedVector[i], tolerance); 
+    }
+}
