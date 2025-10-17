@@ -29,6 +29,13 @@ TEST(ZMatrix, getNumberOfColumns){
     ASSERT_EQ(numberOfColumns, expectedNumberOfColumns);    
 }
 
+TEST(ZMatrix, get_number_of_elements){
+    zlab::integerType expectedNumberOfElements = 12;
+    zlab::ZMatrix matrix(3, 4);
+    auto numberOfElements = matrix.get_number_of_elements();
+    ASSERT_EQ(numberOfElements, expectedNumberOfElements);    
+}
+
 TEST(ZMatrix, deepCopy){
     zlab::ZMatrix matrix(3,3,2.5);
     auto newMatrix = matrix.copy();
