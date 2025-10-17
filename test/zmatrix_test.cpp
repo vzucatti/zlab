@@ -36,6 +36,13 @@ TEST(ZMatrix, get_number_of_elements){
     ASSERT_EQ(numberOfElements, expectedNumberOfElements);    
 }
 
+TEST(ZVector, length){
+    zlab::integerType expectedLength = 5;
+    zlab::ZVector vector(5);
+    auto actualLength = vector.length();
+    ASSERT_EQ(actualLength, expectedLength);    
+}
+
 TEST(ZMatrix, deepCopy){
     zlab::ZMatrix matrix(3,3,2.5);
     auto newMatrix = matrix.copy();
