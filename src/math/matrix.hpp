@@ -13,9 +13,12 @@
 namespace zlab{
 
 class ZMatrix{
+    protected:
         std::vector<scalarType> data;
         positiveIntegerType numberOfRows;
         positiveIntegerType numberOfColumns;
+        
+        friend class ZVector; 
         
         positiveIntegerType computeVectorIndex(integerType, integerType) const;
     public:
@@ -36,6 +39,11 @@ class ZMatrix{
         positiveIntegerType getNumberOfColumns() const { return numberOfColumns; }
         
         void print() const;
+};
+
+class ZVector : public ZMatrix{
+    public:
+        ZVector(positiveIntegerType length, scalarType fillValue=0) : ZMatrix(length,1, fillValue) {}
 };
 
 void axpy(scalarType, const ZMatrix&, ZMatrix&);
