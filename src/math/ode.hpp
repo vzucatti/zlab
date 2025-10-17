@@ -17,5 +17,15 @@ struct ButcherTableau {
 static constexpr ButcherTableau<1> ButcherTableauExplicitEuler = {{{{0.0}}}, {1.0}, {0.0}};
 static constexpr auto& ExplicitEuler = ButcherTableauExplicitEuler;
 
+static constexpr ButcherTableau<2> ButcherTableauRungeKutta2 = {
+    {
+    {{0.0, 0.0},
+    {0.5, 0.0}}
+    },
+    {0.0, 1.0},
+    {0.0, 0.5}
+};
+static constexpr auto& RK2 = ButcherTableauRungeKutta2;
+
 } // end namespace zlab
 
