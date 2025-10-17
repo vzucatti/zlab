@@ -39,6 +39,7 @@ class ZMatrix{
 };
 
 void axpy(scalarType, const ZMatrix&, ZMatrix&);
+void axpy(scalarType, scalarType, scalarType&);
 
 #ifdef ADD_EIGEN
 

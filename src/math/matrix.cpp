@@ -75,4 +75,8 @@ void axpy(scalarType a, const ZMatrix& x, ZMatrix& y){
     }
 }
 
+void axpy(scalarType a, scalarType x, scalarType& y){
+    y += a*x;
+}
+
 } // end namespace zlab
