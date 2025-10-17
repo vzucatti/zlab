@@ -65,16 +65,6 @@ void ZMatrix::print() const {
     }
 }
 
-void axpy(scalarType a, const ZMatrix& x, ZMatrix& y){
-    assert(x.getNumberOfRows() == y.getNumberOfRows());
-    assert(x.getNumberOfColumns() == y.getNumberOfColumns());
-    for(auto i=0; i < x.getNumberOfRows(); i++){
-        for(auto j=0; j < x.getNumberOfColumns(); j++){
-            y(i,j) +=  a * x(i,j);
-        }
-    }
-}
-
 void axpy(scalarType a, scalarType x, scalarType& y){
     y += a*x;
 }

@@ -48,7 +48,18 @@ class ZVector : public ZMatrix{
         const scalarType& operator[](integerType i) const { return (*this)(i, 0); }
 };
 
-void axpy(scalarType, const ZMatrix&, ZMatrix&);
+template <typename matrixType>
+void axpy(scalarType a, const matrixType& x, matrixType& y){
+    assert(x.getNumberOfRows() == y.getNumberOfRows());
+    assert(x.getNumberOfColumns() == y.getNumberOfColumns());
+    for(auto i=0; i < x.getNumberOfRows(); i++){
+        for(auto j=0; j < x.getNumberOfColumns(); j++){
+            y(i,j) +=  a * x(i,j);
+        }
+    }
+}
+
+// TODO: write general function that takes numeric types only
 void axpy(scalarType, scalarType, scalarType&);
 
 #ifdef ADD_EIGEN
