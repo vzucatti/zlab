@@ -14,6 +14,8 @@ struct ButcherTableau {
     std::array<scalarType, numberOfStages> c;
 };
 
+static constexpr ButcherTableau<1> ButcherTableauExplicitEuler = {{{{0.0}}}, {1.0}, {0.0}};
+static constexpr auto& ExplicitEuler = ButcherTableauExplicitEuler;
 
 } // end namespace zlab
 
