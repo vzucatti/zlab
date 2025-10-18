@@ -55,6 +55,15 @@ class ZVector : public ZMatrix{
 };
 
 template <typename matrixType>
+void fill(matrixType& matrix, scalarType fillValue){
+    for(auto i=0; i < matrix.getNumberOfRows(); i++){
+        for(auto j=0; j < matrix.getNumberOfColumns(); j++){
+            matrix(i,j) = fillValue;
+        }
+    }
+}
+
+template <typename matrixType>
 void axpy(scalarType a, const matrixType& x, matrixType& y){
     assert(x.getNumberOfRows() == y.getNumberOfRows());
     assert(x.getNumberOfColumns() == y.getNumberOfColumns());
