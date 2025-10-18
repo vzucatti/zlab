@@ -69,6 +69,15 @@ void ZMatrix::print() const {
     }
 }
 
+scalarType ZVector::dot(const ZVector& vector) const {
+    assert(vector.length() == (*this).length());
+    scalarType result{0};
+    for(auto i=0; i < vector.length(); i++){
+        result += (*this)[i] * vector[i];
+    }
+    return result;
+}
+
 void axpy(scalarType a, scalarType x, scalarType& y){
     y += a*x;
 }

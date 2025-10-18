@@ -50,6 +50,8 @@ class ZVector : public ZMatrix{
         const scalarType& operator[](integerType i) const { return (*this)(i, 0); }
         
         positiveIntegerType length() const{ return (*this).get_number_of_elements(); }
+        
+        scalarType dot(const ZVector&) const;
 };
 
 template <typename matrixType>
