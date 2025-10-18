@@ -62,6 +62,18 @@ TEST(ZMatrix, deepCopy){
     }
 }
 
+TEST(ZMatrix, fill){
+    zlab::ZMatrix matrix(3,4);
+    zlab::scalarType fillValue = 3;
+    zlab::fill(matrix, fillValue);
+    auto tolerance = zlab::evaluateSafeTolerance();
+    for (auto i=0; i < matrix.getNumberOfRows(); i++){
+        for (auto j=0; j < matrix.getNumberOfColumns(); j++){
+            EXPECT_NEAR(matrix(i,j), fillValue, tolerance); 
+        }
+    }
+}
+
 TEST(ZMatrix, axpy){
     zlab::ZMatrix y(2,2,2), x(2,2,2), expectedMatrix(2,2,22);
     zlab::scalarType a{10};
