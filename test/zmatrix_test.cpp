@@ -43,6 +43,14 @@ TEST(ZVector, length){
     ASSERT_EQ(actualLength, expectedLength);    
 }
 
+TEST(ZVector, dotProdut){
+    zlab::ZVector v1(3,1), v2(3,2);
+    auto actualResult = v1.dot(v2);
+    zlab::scalarType expectedResult{6};
+    auto tolerance = zlab::evaluateSafeTolerance();
+    EXPECT_NEAR(actualResult, expectedResult, tolerance); 
+}
+
 TEST(ZMatrix, deepCopy){
     zlab::ZMatrix matrix(3,3,2.5);
     auto newMatrix = matrix.copy();
