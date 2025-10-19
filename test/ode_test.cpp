@@ -15,18 +15,19 @@ TEST(ODE, OrderOfConvergenceExplicitEuler){
     };
     
     ZVector y0(1,1);
+    auto exactSolution = std::exp(-1);
     
     integerType numberTimeSteps1{10};
     scalarType timeStep1 = scalarType{1} / numberTimeSteps1;
     RKSolver<numberOfStages, decltype(f1)> ode1(f1, y0, timeStep1, numberTimeSteps1, method);
     auto yn1 = ode1.solve();
-    auto error1 = std::abs(yn1[0] - std::exp(-1));
+    auto error1 = std::abs(yn1[0] - exactSolution);
     
     integerType numberTimeSteps2{20};
     scalarType timeStep2 = scalarType{1} / numberTimeSteps2;
     RKSolver<numberOfStages, decltype(f1)> ode2(f1, y0, timeStep2, numberTimeSteps2, method);
     auto yn2 = ode2.solve();
-    auto error2 = std::abs(yn2[0] - std::exp(-1));
+    auto error2 = std::abs(yn2[0] - exactSolution);
     
     auto slope = (std::log(error1) - std::log(error2)) / (std::log(timeStep1) - std::log(timeStep2));
     scalarType expectedSlope{numberOfStages};
@@ -46,18 +47,19 @@ TEST(ODE, OrderOfConvergenceMidpointMethod){
     };
     
     ZVector y0(1,1);
+    auto exactSolution = std::exp(-1);
     
     integerType numberTimeSteps1{10};
     scalarType timeStep1 = scalarType{1} / numberTimeSteps1;
     RKSolver<numberOfStages, decltype(f1)> ode1(f1, y0, timeStep1, numberTimeSteps1, method);
     auto yn1 = ode1.solve();
-    auto error1 = std::abs(yn1[0] - std::exp(-1));
+    auto error1 = std::abs(yn1[0] - exactSolution);
     
     integerType numberTimeSteps2{20};
     scalarType timeStep2 = scalarType{1} / numberTimeSteps2;
     RKSolver<numberOfStages, decltype(f1)> ode2(f1, y0, timeStep2, numberTimeSteps2, method);
     auto yn2 = ode2.solve();
-    auto error2 = std::abs(yn2[0] - std::exp(-1));
+    auto error2 = std::abs(yn2[0] - exactSolution);
     
     auto slope = (std::log(error1) - std::log(error2)) / (std::log(timeStep1) - std::log(timeStep2));
     scalarType expectedSlope{numberOfStages};
@@ -77,18 +79,19 @@ TEST(ODE, OrderOfConvergenceHeunsMethod2){
     };
     
     ZVector y0(1,1);
+    auto exactSolution = std::exp(-1);
     
     integerType numberTimeSteps1{10};
     scalarType timeStep1 = scalarType{1} / numberTimeSteps1;
     RKSolver<numberOfStages, decltype(f1)> ode1(f1, y0, timeStep1, numberTimeSteps1, method);
     auto yn1 = ode1.solve();
-    auto error1 = std::abs(yn1[0] - std::exp(-1));
+    auto error1 = std::abs(yn1[0] - exactSolution);
     
     integerType numberTimeSteps2{20};
     scalarType timeStep2 = scalarType{1} / numberTimeSteps2;
     RKSolver<numberOfStages, decltype(f1)> ode2(f1, y0, timeStep2, numberTimeSteps2, method);
     auto yn2 = ode2.solve();
-    auto error2 = std::abs(yn2[0] - std::exp(-1));
+    auto error2 = std::abs(yn2[0] - exactSolution);
     
     auto slope = (std::log(error1) - std::log(error2)) / (std::log(timeStep1) - std::log(timeStep2));
     scalarType expectedSlope{numberOfStages};
@@ -108,18 +111,19 @@ TEST(ODE, OrderOfConvergenceRalstonsMethod2){
     };
     
     ZVector y0(1,1);
+    auto exactSolution = std::exp(-1);
     
     integerType numberTimeSteps1{10};
     scalarType timeStep1 = scalarType{1} / numberTimeSteps1;
     RKSolver<numberOfStages, decltype(f1)> ode1(f1, y0, timeStep1, numberTimeSteps1, method);
     auto yn1 = ode1.solve();
-    auto error1 = std::abs(yn1[0] - std::exp(-1));
+    auto error1 = std::abs(yn1[0] - exactSolution);
     
     integerType numberTimeSteps2{20};
     scalarType timeStep2 = scalarType{1} / numberTimeSteps2;
     RKSolver<numberOfStages, decltype(f1)> ode2(f1, y0, timeStep2, numberTimeSteps2, method);
     auto yn2 = ode2.solve();
-    auto error2 = std::abs(yn2[0] - std::exp(-1));
+    auto error2 = std::abs(yn2[0] - exactSolution);
     
     auto slope = (std::log(error1) - std::log(error2)) / (std::log(timeStep1) - std::log(timeStep2));
     scalarType expectedSlope{numberOfStages};
@@ -139,18 +143,19 @@ TEST(ODE, OrderOfConvergenceHeunsMethod3){
     };
     
     ZVector y0(1,1);
+    auto exactSolution = std::exp(-1);
     
     integerType numberTimeSteps1{10};
     scalarType timeStep1 = scalarType{1} / numberTimeSteps1;
     RKSolver<numberOfStages, decltype(f1)> ode1(f1, y0, timeStep1, numberTimeSteps1, method);
     auto yn1 = ode1.solve();
-    auto error1 = std::abs(yn1[0] - std::exp(-1));
+    auto error1 = std::abs(yn1[0] - exactSolution);
     
     integerType numberTimeSteps2{20};
     scalarType timeStep2 = scalarType{1} / numberTimeSteps2;
     RKSolver<numberOfStages, decltype(f1)> ode2(f1, y0, timeStep2, numberTimeSteps2, method);
     auto yn2 = ode2.solve();
-    auto error2 = std::abs(yn2[0] - std::exp(-1));
+    auto error2 = std::abs(yn2[0] - exactSolution);
     
     auto slope = (std::log(error1) - std::log(error2)) / (std::log(timeStep1) - std::log(timeStep2));
     scalarType expectedSlope{numberOfStages};
@@ -170,18 +175,19 @@ TEST(ODE, OrderOfConvergenceRalstonsMethod3){
     };
     
     ZVector y0(1,1);
+    auto exactSolution = std::exp(-1);
     
     integerType numberTimeSteps1{10};
     scalarType timeStep1 = scalarType{1} / numberTimeSteps1;
     RKSolver<numberOfStages, decltype(f1)> ode1(f1, y0, timeStep1, numberTimeSteps1, method);
     auto yn1 = ode1.solve();
-    auto error1 = std::abs(yn1[0] - std::exp(-1));
+    auto error1 = std::abs(yn1[0] - exactSolution);
     
     integerType numberTimeSteps2{20};
     scalarType timeStep2 = scalarType{1} / numberTimeSteps2;
     RKSolver<numberOfStages, decltype(f1)> ode2(f1, y0, timeStep2, numberTimeSteps2, method);
     auto yn2 = ode2.solve();
-    auto error2 = std::abs(yn2[0] - std::exp(-1));
+    auto error2 = std::abs(yn2[0] - exactSolution);
     
     auto slope = (std::log(error1) - std::log(error2)) / (std::log(timeStep1) - std::log(timeStep2));
     scalarType expectedSlope{numberOfStages};
@@ -201,18 +207,19 @@ TEST(ODE, OrderOfConvergenceSSPRK3){
     };
     
     ZVector y0(1,1);
+    auto exactSolution = std::exp(-1);
     
     integerType numberTimeSteps1{10};
     scalarType timeStep1 = scalarType{1} / numberTimeSteps1;
     RKSolver<numberOfStages, decltype(f1)> ode1(f1, y0, timeStep1, numberTimeSteps1, method);
     auto yn1 = ode1.solve();
-    auto error1 = std::abs(yn1[0] - std::exp(-1));
+    auto error1 = std::abs(yn1[0] - exactSolution);
     
     integerType numberTimeSteps2{20};
     scalarType timeStep2 = scalarType{1} / numberTimeSteps2;
     RKSolver<numberOfStages, decltype(f1)> ode2(f1, y0, timeStep2, numberTimeSteps2, method);
     auto yn2 = ode2.solve();
-    auto error2 = std::abs(yn2[0] - std::exp(-1));
+    auto error2 = std::abs(yn2[0] - exactSolution);
     
     auto slope = (std::log(error1) - std::log(error2)) / (std::log(timeStep1) - std::log(timeStep2));
     scalarType expectedSlope{numberOfStages};
@@ -232,18 +239,19 @@ TEST(ODE, OrderOfConvergenceClassicalRK4){
     };
     
     ZVector y0(1,1);
+    auto exactSolution = std::exp(-1);
     
     integerType numberTimeSteps1{10};
     scalarType timeStep1 = scalarType{1} / numberTimeSteps1;
     RKSolver<numberOfStages, decltype(f1)> ode1(f1, y0, timeStep1, numberTimeSteps1, method);
     auto yn1 = ode1.solve();
-    auto error1 = std::abs(yn1[0] - std::exp(-1));
+    auto error1 = std::abs(yn1[0] - exactSolution);
     
     integerType numberTimeSteps2{20};
     scalarType timeStep2 = scalarType{1} / numberTimeSteps2;
     RKSolver<numberOfStages, decltype(f1)> ode2(f1, y0, timeStep2, numberTimeSteps2, method);
     auto yn2 = ode2.solve();
-    auto error2 = std::abs(yn2[0] - std::exp(-1));
+    auto error2 = std::abs(yn2[0] - exactSolution);
     
     auto slope = (std::log(error1) - std::log(error2)) / (std::log(timeStep1) - std::log(timeStep2));
     scalarType expectedSlope{numberOfStages};
