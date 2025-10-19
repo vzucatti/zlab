@@ -74,6 +74,17 @@ static constexpr ButcherTableau<3> ButcherTableauRalstonsMethod3 = {
 };
 static constexpr auto& RalstonsMethod3 = ButcherTableauRalstonsMethod3;
 
+static constexpr ButcherTableau<3> StrongStabilityPreservingRungeKutta3 = {
+    {{
+    {0.0, 0.0, 0.0},
+    {1.0, 0.0, 0.0},
+    {0.25, 0.25, 0.0}
+    }},
+    {1.0/6.0, 1./6.0, 2.0/3.0},
+    {0.0, 1.0, 0.5}
+};
+static constexpr auto& SSPRK3 = StrongStabilityPreservingRungeKutta3;
+
 static constexpr ButcherTableau<4> ButcherTableauClassicalRungeKutta4 = {
     {{
     {0.0, 0.0, 0.0, 0.0},
