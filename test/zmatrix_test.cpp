@@ -1,5 +1,6 @@
 
 #include <type_traits>
+#include <limits>
 #include <cmath>
 
 #include "gtest/gtest.h"
@@ -92,6 +93,18 @@ TEST(ZVector, L4_norm){
     v.print();    
     auto actualNorm = v.norm(4);
     scalarType expectedNorm{std::pow(2, 0.25) * std::sqrt(7)};
+    auto tolerance = evaluateSafeTolerance();
+    EXPECT_NEAR(actualNorm, expectedNorm, tolerance); 
+}
+
+TEST(ZVector, Linf_norm){
+    using namespace zlab;
+    ZVector v(3);
+    for (auto i=0; i<v.length();++i) v[i] = i+1;
+    v.print();
+    auto infinity = std::numeric_limits<scalarType>::infinity();
+    auto actualNorm = v.norm(infinity);
+    scalarType expectedNorm{3};
     auto tolerance = evaluateSafeTolerance();
     EXPECT_NEAR(actualNorm, expectedNorm, tolerance); 
 }
