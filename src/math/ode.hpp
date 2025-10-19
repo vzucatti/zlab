@@ -32,6 +32,16 @@ static constexpr ButcherTableau<2> ButcherTableauMidpointMethod = {
 };
 static constexpr auto& MidpointMethod = ButcherTableauMidpointMethod;
 
+static constexpr ButcherTableau<2> ButcherTableauHeunsMethod2 = {
+    {{
+    {0.0, 0.0},
+    {1.0, 0.0}
+    }},
+    {0.5, 0.5},
+    {0.0, 1.0}
+};
+static constexpr auto& HeunsMethod2 = ButcherTableauHeunsMethod2;
+
 static constexpr ButcherTableau<4> ButcherTableauClassicalRungeKutta4 = {
     {{
     {0.0, 0.0, 0.0, 0.0},
