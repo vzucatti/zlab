@@ -54,7 +54,7 @@ class ZVector : public ZMatrix{
         positiveIntegerType length() const{ return (*this).get_number_of_elements(); }
         
         scalarType dot(const ZVector&) const;
-        scalarType norm(integerType=2) const;
+        scalarType norm(scalarType=2) const;
 };
 
 template <typename matrixType>
