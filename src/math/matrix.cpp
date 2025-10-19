@@ -39,7 +39,13 @@ ZMatrix& ZMatrix::operator=(ZMatrix&& matrix){
 ZMatrix ZMatrix::copy() const {
     ZMatrix clone(this->numberOfRows, this->numberOfColumns);
     clone.data = this->data;
-    return std::move(clone);
+    return clone;
+}
+
+ZVector ZVector::copy() const {
+    ZVector clone(this->numberOfRows);
+    clone.data = this->data;
+    return clone;
 }
 
 positiveIntegerType ZMatrix::computeVectorIndex(integerType row, integerType column) const {

@@ -45,6 +45,8 @@ class ZMatrix{
 class ZVector : public ZMatrix{
     public:
         ZVector(positiveIntegerType length, scalarType fillValue=0) : ZMatrix(length,1, fillValue) {}
+        
+        ZVector copy() const;
             
         scalarType& operator[](integerType i) { return (*this)(i,0); }
         const scalarType& operator[](integerType i) const { return (*this)(i, 0); }
