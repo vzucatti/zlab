@@ -1,8 +1,10 @@
 
 #include <iostream>
 #include <utility>
+#include <limits>
 #include <cassert>
 
+#include "utilities.hpp"
 #include "matrix.hpp"
 
 namespace zlab{
@@ -82,6 +84,24 @@ scalarType ZVector::dot(const ZVector& vector) const {
         result += (*this)[i] * vector[i];
     }
     return result;
+}
+
+scalarType ZVector::norm(integerType p) const {
+    if (p == std::numeric_limits<scalarType>::infinity()) {
+        scalarType max_abs = 0.0;
+        for (const auto& val : data) {
+            max_abs = std::max(max_abs, std::abs(val));
+        }
+        return max_abs;
+    } else if (p > 0){
+        scalarType sumOfPowers{0};
+        for (const auto& val : data){
+            sumOfPowers += zlab::pow(std::abs(val), p);
+        }
+        return zlab::pow(sumOfPowers, 1.0 / p);
+    } else {
+        throw std::invalid_argument("p must be a positive integer (p > 0) or infinity (std::numeric_limits<double>::infinity()).");
+    }
 }
 
 void axpy(scalarType a, scalarType x, scalarType& y){
