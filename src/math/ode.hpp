@@ -7,11 +7,12 @@
 
 namespace zlab{
 
-template <positiveIntegerType numberOfStages>
+template <positiveIntegerType numberOfStages_>
 struct ButcherTableau {
-    std::array<std::array<scalarType, numberOfStages>, numberOfStages> A;
-    std::array<scalarType, numberOfStages> b;
-    std::array<scalarType, numberOfStages> c;
+    static constexpr auto numberOfStages = numberOfStages_;
+    std::array<std::array<scalarType, numberOfStages_>, numberOfStages_> A;
+    std::array<scalarType, numberOfStages_> b;
+    std::array<scalarType, numberOfStages_> c;
 };
 
 static constexpr ButcherTableau<1> ButcherTableauExplicitEuler = {{{{0.0}}}, {1.0}, {0.0}};
