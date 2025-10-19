@@ -6,6 +6,7 @@ add_executable(
         rbf_test.cpp
         math_test.cpp
         zmatrix_test.cpp
+        ode_test.cpp
 )
 target_link_libraries(
     unit_tests 
