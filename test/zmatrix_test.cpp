@@ -51,6 +51,17 @@ TEST(ZVector, dotProdut){
     EXPECT_NEAR(actualResult, expectedResult, tolerance); 
 }
 
+TEST(ZVector, L1_norm){
+    using namespace zlab;
+    ZVector v(3);
+    for (auto i=0; i<v.length();++i) v[i] = i+1;
+    v.print();    
+    auto actualNorm = v.norm(1);
+    scalarType expectedNorm{6};
+    auto tolerance = evaluateSafeTolerance();
+    EXPECT_NEAR(actualNorm, expectedNorm, tolerance); 
+}
+
 TEST(ZMatrix, deepCopy){
     zlab::ZMatrix matrix(3,3,2.5);
     auto newMatrix = matrix.copy();
