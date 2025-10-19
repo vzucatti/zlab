@@ -1,5 +1,6 @@
 
 #include <type_traits>
+#include <cmath>
 
 #include "gtest/gtest.h"
 
@@ -58,6 +59,17 @@ TEST(ZVector, L1_norm){
     v.print();    
     auto actualNorm = v.norm(1);
     scalarType expectedNorm{6};
+    auto tolerance = evaluateSafeTolerance();
+    EXPECT_NEAR(actualNorm, expectedNorm, tolerance); 
+}
+
+TEST(ZVector, L2_norm){
+    using namespace zlab;
+    ZVector v(3);
+    for (auto i=0; i<v.length();++i) v[i] = i+1;
+    v.print();    
+    auto actualNorm = v.norm(2);
+    scalarType expectedNorm{std::sqrt(14)};
     auto tolerance = evaluateSafeTolerance();
     EXPECT_NEAR(actualNorm, expectedNorm, tolerance); 
 }
