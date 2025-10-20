@@ -143,8 +143,4 @@ scalarType ZVector::norm(scalarType p) const {
     }
 }
 
-void axpy(scalarType a, scalarType x, scalarType& y){
-    y += a*x;
-}
-
 } // end namespace zlab

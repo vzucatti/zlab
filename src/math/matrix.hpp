@@ -113,9 +113,6 @@ void axpy(scalarType a, const matrixType& x, matrixType& y){
     }
 }
 
-// TODO: write general function that takes numeric types only
-void axpy(scalarType, scalarType, scalarType&);
-
 #ifdef ADD_EIGEN
 
 class EigenMatrix{
