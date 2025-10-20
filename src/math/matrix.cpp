@@ -121,6 +121,10 @@ void ZMatrix::fill(scalarType fillValue) {
     std::ranges::fill(data, fillValue);
 }
 
+void ZVector::fill(scalarType fillValue) {
+    matrix.fill(fillValue);
+}
+
 scalarType ZVector::dot(const ZVector& vector) const {
     assert(vector.length() == length());
     scalarType result{0};

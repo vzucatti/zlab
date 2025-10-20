@@ -10,7 +10,7 @@ TEST(ODE, OrderOfConvergenceExplicitEuler){
     auto& numberOfStages = method.numberOfStages;
     
     auto f1 = [](scalarType /*t*/, const ZVector& y, ZVector& f) {
-        fill(f,0);
+        f.fill(0);
         axpy(-1,y,f);
     };
     
@@ -42,7 +42,7 @@ TEST(ODE, OrderOfConvergenceMidpointMethod){
     auto& numberOfStages = method.numberOfStages;
     
     auto f1 = [](scalarType /*t*/, const ZVector& y, ZVector& f) {
-        fill(f,0);
+        f.fill(0);
         axpy(-1,y,f);
     };
     
@@ -74,7 +74,7 @@ TEST(ODE, OrderOfConvergenceHeunsMethod2){
     auto& numberOfStages = method.numberOfStages;
     
     auto f1 = [](scalarType /*t*/, const ZVector& y, ZVector& f) {
-        fill(f,0);
+        f.fill(0);
         axpy(-1,y,f);
     };
     
@@ -106,7 +106,7 @@ TEST(ODE, OrderOfConvergenceRalstonsMethod2){
     auto& numberOfStages = method.numberOfStages;
     
     auto f1 = [](scalarType /*t*/, const ZVector& y, ZVector& f) {
-        fill(f,0);
+        f.fill(0);
         axpy(-1,y,f);
     };
     
@@ -138,7 +138,7 @@ TEST(ODE, OrderOfConvergenceHeunsMethod3){
     auto& numberOfStages = method.numberOfStages;
     
     auto f1 = [](scalarType /*t*/, const ZVector& y, ZVector& f) {
-        fill(f,0);
+        f.fill(0);
         axpy(-1,y,f);
     };
     
@@ -170,7 +170,7 @@ TEST(ODE, OrderOfConvergenceRalstonsMethod3){
     auto& numberOfStages = method.numberOfStages;
     
     auto f1 = [](scalarType /*t*/, const ZVector& y, ZVector& f) {
-        fill(f,0);
+        f.fill(0);
         axpy(-1,y,f);
     };
     
@@ -202,7 +202,7 @@ TEST(ODE, OrderOfConvergenceSSPRK3){
     auto& numberOfStages = method.numberOfStages;
     
     auto f1 = [](scalarType /*t*/, const ZVector& y, ZVector& f) {
-        fill(f,0);
+        f.fill(0);
         axpy(-1,y,f);
     };
     
@@ -234,7 +234,7 @@ TEST(ODE, OrderOfConvergenceClassicalRK4){
     auto& numberOfStages = method.numberOfStages;
     
     auto f1 = [](scalarType /*t*/, const ZVector& y, ZVector& f) {
-        fill(f,0);
+        f.fill(0);
         axpy(-1,y,f);
     };
     

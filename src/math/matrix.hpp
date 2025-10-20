@@ -67,6 +67,8 @@ class ZVector {
         ZVector(positiveIntegerType length, scalarType fillValue=0) : matrix(length,1, fillValue) {}
         
         ZVector copy() const;
+        
+        void fill(scalarType);
 
         ZVector& operator=(std::span<const scalarType>);
         ZVector& operator=(const ColumnView&);
@@ -81,12 +83,6 @@ class ZVector {
 
         void print() const { matrix.print(); };
 };
-
-inline void fill(ZVector& v, scalarType fillValue) {
-    for (size_t i = 0; i < v.length(); ++i) {
-        v[i] = fillValue;
-    }
-}
 
 template <typename vectorType>
 inline void axpy(scalarType a, const vectorType& x, vectorType& y){
