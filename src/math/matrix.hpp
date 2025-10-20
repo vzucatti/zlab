@@ -3,6 +3,7 @@
 
 #include <cassert>
 #include <vector>
+#include <span>
 
 #ifdef ADD_EIGEN
     #include <eigen3/Eigen/Dense>
@@ -34,6 +35,8 @@ class ZMatrix{
         
         scalarType& operator()(integerType, integerType);
         const scalarType& operator()(integerType, integerType) const;
+        
+        std::span<const scalarType> row_view(integerType) const;
 
         positiveIntegerType getNumberOfRows() const { return numberOfRows; }
         positiveIntegerType getNumberOfColumns() const { return numberOfColumns; }

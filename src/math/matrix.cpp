@@ -3,6 +3,7 @@
 #include <utility>
 #include <limits>
 #include <cassert>
+#include <span>
 
 #include "utilities.hpp"
 #include "matrix.hpp"
@@ -61,6 +62,12 @@ scalarType& ZMatrix::operator()(integerType row, integerType column) {
 
 const scalarType& ZMatrix::operator()(integerType row, integerType column) const {
     return data[computeVectorIndex(row,column)];
+}
+
+std::span<const scalarType> ZMatrix::row_view(integerType rowIndex) const{
+    assert(rowIndex < numberOfRows && rowIndex > -1);
+    const scalarType* rowStartPointer = data.data() + (rowIndex * numberOfColumns);
+    return std::span<const scalarType>(rowStartPointer, numberOfColumns);
 }
 
 positiveIntegerType ZMatrix::get_number_of_elements() const{
