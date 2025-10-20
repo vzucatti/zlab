@@ -53,6 +53,19 @@ TEST(ZVector, dotProdut){
     EXPECT_NEAR(actualResult, expectedResult, tolerance); 
 }
 
+TEST(ZVector, copyMatrixRowView){
+    using namespace zlab;
+    ZMatrix matrix(3,3,1);
+    ZVector vector(3);
+    vector = matrix.row_view(0);
+    scalarType expectedResult{1};
+    auto tolerance = zlab::evaluateSafeTolerance();
+    for (auto i=0; i < vector.length(); ++i){
+        auto actualResult = vector[i];
+        EXPECT_NEAR(actualResult, expectedResult, tolerance); 
+    }
+}
+
 TEST(ZVector, L1_norm){
     using namespace zlab;
     ZVector v(3);
