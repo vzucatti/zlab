@@ -67,6 +67,7 @@ class ZVector : public ZMatrix{
         ZVector copy() const;
         
         ZVector& operator=(std::span<const scalarType>);
+        ZVector& operator=(const ColumnView&);
             
         scalarType& operator[](integerType i) { return (*this)(i,0); }
         const scalarType& operator[](integerType i) const { return (*this)(i, 0); }

@@ -59,6 +59,14 @@ ZVector& ZVector::operator=(std::span<const scalarType> view){
     return *this;
 }
 
+ZVector& ZVector::operator=(const ColumnView& view){
+    assert(view.size() == (*this).length());
+    for(auto i=0; i < view.size(); ++i){
+        (*this)[i] = view[i];
+    }
+    return *this;
+}
+
 positiveIntegerType ZMatrix::computeVectorIndex(integerType row, integerType column) const {
     assert(row < numberOfRows && column < numberOfColumns);
     return row * numberOfColumns + column;
