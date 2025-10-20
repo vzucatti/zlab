@@ -78,6 +78,22 @@ std::span<const scalarType> ZMatrix::row_view(integerType rowIndex) const{
     return std::span<const scalarType>(rowStartPointer, numberOfColumns);
 }
 
+ColumnView ZMatrix::column_view(integerType columnIndex) const {
+    return ColumnView(*this, columnIndex);
+}
+
+ColumnView::ColumnView(
+    const ZMatrix& matrix,
+    integerType columnIndex) : 
+    matrix(matrix), 
+    columnIndex(columnIndex) {
+    assert(columnIndex < matrix.getNumberOfRows() && columnIndex > -1);
+}
+
+const scalarType& ColumnView::operator[](integerType rowIndex) const {
+    return matrix(rowIndex, columnIndex); 
+}
+
 positiveIntegerType ZMatrix::get_number_of_elements() const{
     return numberOfRows*numberOfColumns;
 }

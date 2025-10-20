@@ -13,6 +13,8 @@
 
 namespace zlab{
 
+class ColumnView;
+
 class ZMatrix{
     protected:
         std::vector<scalarType> data;
@@ -37,12 +39,25 @@ class ZMatrix{
         const scalarType& operator()(integerType, integerType) const;
         
         std::span<const scalarType> row_view(integerType) const;
+        ColumnView column_view(integerType) const;
 
         positiveIntegerType getNumberOfRows() const { return numberOfRows; }
         positiveIntegerType getNumberOfColumns() const { return numberOfColumns; }
         positiveIntegerType get_number_of_elements() const;
         
         void print() const;
+};
+
+class ColumnView {
+    private:
+        const ZMatrix& matrix;
+        positiveIntegerType columnIndex;
+    public:
+        ColumnView(const ZMatrix&, integerType);
+
+        positiveIntegerType size() const { return matrix.getNumberOfRows(); }
+        
+        const scalarType& operator[](integerType) const;
 };
 
 class ZVector : public ZMatrix{
