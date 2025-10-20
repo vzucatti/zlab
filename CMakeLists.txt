@@ -25,3 +25,5 @@ if (BUILD_TESTING)
     include( CTest )
     add_subdirectory(test)
 endif()
+
+add_subdirectory( examples )
