@@ -1,4 +1,5 @@
 
+#include <algorithm>
 #include <iostream>
 #include <utility>
 #include <limits>
@@ -114,6 +115,10 @@ void ZMatrix::print() const {
             std::cout << (column < numberOfColumns - 1 ? " " : "\n");
         }
     }
+}
+
+void ZMatrix::fill(scalarType fillValue) {
+    std::ranges::fill(data, fillValue);
 }
 
 scalarType ZVector::dot(const ZVector& vector) const {

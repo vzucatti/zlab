@@ -159,7 +159,7 @@ TEST(ZMatrix, deepCopy){
 TEST(ZMatrix, fill){
     zlab::ZMatrix matrix(3,4);
     zlab::scalarType fillValue = 3;
-    zlab::fill(matrix, fillValue);
+    matrix.fill(fillValue);
     auto tolerance = zlab::evaluateSafeTolerance();
     for (auto i=0; i < matrix.getNumberOfRows(); i++){
         for (auto j=0; j < matrix.getNumberOfColumns(); j++){

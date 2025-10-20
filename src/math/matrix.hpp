@@ -33,6 +33,8 @@ class ZMatrix{
         
         ZMatrix copy() const;
         
+        void fill(scalarType);
+        
         scalarType& operator()(integerType, integerType);
         const scalarType& operator()(integerType, integerType) const;
         
@@ -83,15 +85,6 @@ class ZVector {
 inline void fill(ZVector& v, scalarType fillValue) {
     for (size_t i = 0; i < v.length(); ++i) {
         v[i] = fillValue;
-    }
-}
-
-template <typename matrixType>
-void fill(matrixType& matrix, scalarType fillValue){
-    for(auto i=0; i < matrix.getNumberOfRows(); i++){
-        for(auto j=0; j < matrix.getNumberOfColumns(); j++){
-            matrix(i,j) = fillValue;
-        }
     }
 }
 
