@@ -168,6 +168,16 @@ TEST(ZMatrix, fill){
     }
 }
 
+TEST(ZVector, fill){
+    zlab::ZVector vector(3);
+    zlab::scalarType fillValue = 3;
+    vector.fill(fillValue);
+    auto tolerance = zlab::evaluateSafeTolerance();
+    for (auto i=0; i < vector.length(); i++){
+        EXPECT_NEAR(vector[i], fillValue, tolerance); 
+    }
+}
+
 TEST(ZVector, axpy){
     zlab::ZVector y(2,2), x(2,2), expectedVector(2,22);
     zlab::scalarType a{10};
