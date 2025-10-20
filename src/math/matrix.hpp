@@ -98,20 +98,21 @@ void gemm(
     const matrixType& B, 
     matrixType& C, 
     scalarType a=1,
-    scalarType b=1){
+    scalarType b=1)
+{
     assert(C.getNumberOfRows() == A.getNumberOfRows());
     assert(A.getNumberOfColumns() == B.getNumberOfRows());
     assert(C.getNumberOfColumns() == B.getNumberOfColumns());
     for(auto i=0; i<A.getNumberOfRows(); ++i){
-        for(auto j=0; j<B.getNumberOfRows(); ++j){
-            for(auto k=0; k<C.getNumberOfColumns(); ++k){
-                C(i,k) = a * A(i,j) * B(j,k) + b * C(i,k);
+        for(auto k=0; k<C.getNumberOfColumns(); ++k){
+            auto sum = b * C(i, k);
+            for(auto j=0; j<B.getNumberOfRows(); ++j){
+               sum += a * A(i,j) * B(j,k);
             }
+            C(i, k) = sum;
         }
     }
 }
-
-
 
 #ifdef ADD_EIGEN
 
