@@ -95,21 +95,11 @@ void fill(matrixType& matrix, scalarType fillValue){
     }
 }
 
-inline void axpy(scalarType a, const ZVector& x, ZVector& y){
+template <typename vectorType>
+inline void axpy(scalarType a, const vectorType& x, vectorType& y){
     assert(x.length() == y.length());
     for(auto i=0; i < x.length(); i++){
         y[i] +=  a * x[i];
-    }
-}
-
-template <typename matrixType>
-void axpy(scalarType a, const matrixType& x, matrixType& y){
-    assert(x.getNumberOfRows() == y.getNumberOfRows());
-    assert(x.getNumberOfColumns() == y.getNumberOfColumns());
-    for(auto i=0; i < x.getNumberOfRows(); i++){
-        for(auto j=0; j < x.getNumberOfColumns(); j++){
-            y(i,j) +=  a * x(i,j);
-        }
     }
 }
 

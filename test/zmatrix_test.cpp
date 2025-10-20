@@ -168,18 +168,6 @@ TEST(ZMatrix, fill){
     }
 }
 
-TEST(ZMatrix, axpy){
-    zlab::ZMatrix y(2,2,2), x(2,2,2), expectedMatrix(2,2,22);
-    zlab::scalarType a{10};
-    zlab::axpy(a,x,y);
-    auto tolerance = zlab::evaluateSafeTolerance();
-    for (auto i=0; i < y.getNumberOfRows(); i++){
-        for (auto j=0; j < y.getNumberOfColumns(); j++){
-            EXPECT_NEAR(y(i,j), expectedMatrix(i,j), tolerance); 
-        }
-    }
-}
-
 TEST(ZVector, axpy){
     zlab::ZVector y(2,2), x(2,2), expectedVector(2,22);
     zlab::scalarType a{10};
