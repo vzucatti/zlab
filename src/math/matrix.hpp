@@ -16,12 +16,10 @@ namespace zlab{
 class ColumnView;
 
 class ZMatrix{
-    protected:
+    private:
         std::vector<scalarType> data;
         positiveIntegerType numberOfRows;
         positiveIntegerType numberOfColumns;
-        
-        friend class ZVector; 
         
         positiveIntegerType computeVectorIndex(integerType, integerType) const;
     public:
@@ -60,23 +58,33 @@ class ColumnView {
         const scalarType& operator[](integerType) const;
 };
 
-class ZVector : public ZMatrix{
+class ZVector {
+    private:
+        ZMatrix matrix;
     public:
-        ZVector(positiveIntegerType length, scalarType fillValue=0) : ZMatrix(length,1, fillValue) {}
+        ZVector(positiveIntegerType length, scalarType fillValue=0) : matrix(length,1, fillValue) {}
         
         ZVector copy() const;
-        
+
         ZVector& operator=(std::span<const scalarType>);
         ZVector& operator=(const ColumnView&);
-            
-        scalarType& operator[](integerType i) { return (*this)(i,0); }
-        const scalarType& operator[](integerType i) const { return (*this)(i, 0); }
-        
-        positiveIntegerType length() const{ return (*this).get_number_of_elements(); }
+
+        scalarType& operator[](integerType i) { return matrix(i,0); }
+        const scalarType& operator[](integerType i) const { return matrix(i, 0); }
+
+        positiveIntegerType length() const{ return matrix.getNumberOfRows(); }
         
         scalarType dot(const ZVector&) const;
         scalarType norm(scalarType=2) const;
+
+        void print() const { matrix.print(); };
 };
+
+inline void fill(ZVector& v, scalarType fillValue) {
+    for (size_t i = 0; i < v.length(); ++i) {
+        v[i] = fillValue;
+    }
+}
 
 template <typename matrixType>
 void fill(matrixType& matrix, scalarType fillValue){
@@ -84,6 +92,13 @@ void fill(matrixType& matrix, scalarType fillValue){
         for(auto j=0; j < matrix.getNumberOfColumns(); j++){
             matrix(i,j) = fillValue;
         }
+    }
+}
+
+inline void axpy(scalarType a, const ZVector& x, ZVector& y){
+    assert(x.length() == y.length());
+    for(auto i=0; i < x.length(); i++){
+        y[i] +=  a * x[i];
     }
 }
 

@@ -46,13 +46,13 @@ ZMatrix ZMatrix::copy() const {
 }
 
 ZVector ZVector::copy() const {
-    ZVector clone(this->numberOfRows);
-    clone.data = this->data;
+    ZVector clone(length());
+    clone.matrix = matrix;
     return clone;
 }
 
 ZVector& ZVector::operator=(std::span<const scalarType> view){
-    assert(view.size() == (*this).length());
+    assert(view.size() == length());
     for(auto i=0; i < view.size(); ++i){
         (*this)[i] = view[i];
     }
@@ -60,7 +60,7 @@ ZVector& ZVector::operator=(std::span<const scalarType> view){
 }
 
 ZVector& ZVector::operator=(const ColumnView& view){
-    assert(view.size() == (*this).length());
+    assert(view.size() == length());
     for(auto i=0; i < view.size(); ++i){
         (*this)[i] = view[i];
     }
@@ -117,7 +117,7 @@ void ZMatrix::print() const {
 }
 
 scalarType ZVector::dot(const ZVector& vector) const {
-    assert(vector.length() == (*this).length());
+    assert(vector.length() == length());
     scalarType result{0};
     for(auto i=0; i < vector.length(); i++){
         result += (*this)[i] * vector[i];
@@ -128,14 +128,14 @@ scalarType ZVector::dot(const ZVector& vector) const {
 scalarType ZVector::norm(scalarType p) const {
     if (p == std::numeric_limits<scalarType>::infinity()) {
         scalarType max_abs = 0.0;
-        for (const auto& val : data) {
-            max_abs = std::max(max_abs, std::abs(val));
+        for (auto i=0; i < length(); ++i){
+            max_abs = std::max(max_abs, std::abs((*this)[i]));
         }
         return max_abs;
     } else if (p > 0){
         scalarType sumOfPowers{0};
-        for (const auto& val : data){
-            sumOfPowers += zlab::pow(std::abs(val), p);
+        for (auto i=0; i < length(); ++i){
+            sumOfPowers += zlab::pow(std::abs((*this)[i]), p);
         }
         return zlab::pow(sumOfPowers, 1.0 / p);
     } else {
