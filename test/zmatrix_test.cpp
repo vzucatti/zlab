@@ -56,11 +56,16 @@ TEST(ZVector, dotProdut){
 TEST(ZVector, copyMatrixRowView){
     using namespace zlab;
     ZMatrix matrix(3,3,1);
+    for(auto i=0; i < matrix.getNumberOfRows(); ++i){
+        for (auto j=0; j < matrix.getNumberOfColumns(); j++){
+            matrix(i,j) = 10*i + j;
+        }
+    }
     ZVector vector(3);
     vector = matrix.row_view(0);
-    scalarType expectedResult{1};
     auto tolerance = zlab::evaluateSafeTolerance();
     for (auto i=0; i < vector.length(); ++i){
+        auto expectedResult = i;
         auto actualResult = vector[i];
         EXPECT_NEAR(actualResult, expectedResult, tolerance); 
     }
