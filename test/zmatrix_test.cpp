@@ -161,6 +161,29 @@ TEST(ZMatrix, fill){
     }
 }
 
+TEST(ZMatrix, gemm){
+    zlab::ZMatrix A(3,4), B(4,2), C(3,2,1), R(3,2);
+    for (auto i=0; i<A.getNumberOfRows(); ++i){
+        for (auto j=0; j<A.getNumberOfColumns(); ++j){
+            A(i,j) = i+1;
+        }
+    }
+    B(0, 0) = 1; B(0, 1) = 2;
+    B(1, 0) = 1; B(1, 1) = 2;
+    B(2, 0) = 1; B(2, 1) = 2;
+    B(3, 0) = 1; B(3, 1) = 2;
+    zlab::gemm(A,B,C,2,3);
+    R(0, 0) = 11; R(0, 1) = 19;
+    R(1, 0) = 19; R(1, 1) = 35;
+    R(2, 0) = 27; R(2, 1) = 51;
+    auto tolerance = zlab::evaluateSafeTolerance();
+    for (auto i=0; i < R.getNumberOfRows(); i++){
+        for (auto j=0; j < R.getNumberOfColumns(); j++){
+            EXPECT_NEAR(C(i,j), R(i,j), tolerance); 
+        }
+    }
+}
+
 TEST(ZVector, fill){
     zlab::ZVector vector(3);
     zlab::scalarType fillValue = 3;
