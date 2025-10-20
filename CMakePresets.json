@@ -7,7 +7,7 @@
       "generator": "Unix Makefiles",
       "binaryDir": "${sourceDir}/../build",
       "cacheVariables": {
-        "CMAKE_CXX_STANDARD": "17",
+        "CMAKE_CXX_STANDARD": "20",
         "ADD_EIGEN": "TRUE"
       }
     }
