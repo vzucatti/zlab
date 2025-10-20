@@ -71,6 +71,24 @@ TEST(ZVector, copyMatrixRowView){
     }
 }
 
+TEST(ZVector, copyMatrixColumnView){
+    using namespace zlab;
+    ZMatrix matrix(3,3,1);
+    for(auto i=0; i < matrix.getNumberOfRows(); ++i){
+        for (auto j=0; j < matrix.getNumberOfColumns(); j++){
+            matrix(i,j) = 10*i + j;
+        }
+    }
+    ZVector vector(3);
+    vector = matrix.column_view(0);
+    auto tolerance = zlab::evaluateSafeTolerance();
+    for (auto i=0; i < vector.length(); ++i){
+        auto expectedResult = 10*i;
+        auto actualResult = vector[i];
+        EXPECT_NEAR(actualResult, expectedResult, tolerance); 
+    }
+}
+
 TEST(ZVector, L1_norm){
     using namespace zlab;
     ZVector v(3);
