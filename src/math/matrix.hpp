@@ -41,7 +41,7 @@ class ZMatrix{
         std::span<const scalarType> row_view(integerType) const;
         ColumnView column_view(integerType) const;
 
-        positiveIntegerType getNumberOfRows() const { return numberOfRows; }
+        positiveIntegerType get_number_of_rows() const { return numberOfRows; }
         positiveIntegerType getNumberOfColumns() const { return numberOfColumns; }
         positiveIntegerType get_number_of_elements() const;
         
@@ -55,7 +55,7 @@ class ColumnView {
     public:
         ColumnView(const ZMatrix&, integerType);
         const scalarType& operator[](integerType) const;
-        positiveIntegerType size() const { return matrix.getNumberOfRows(); }
+        positiveIntegerType size() const { return matrix.get_number_of_rows(); }
 };
 
 class ZVector {
@@ -80,7 +80,7 @@ class ZVector {
         scalarType& operator[](integerType i) { return matrix(i,0); }
         const scalarType& operator[](integerType i) const { return matrix(i, 0); }
 
-        positiveIntegerType length() const{ return matrix.getNumberOfRows(); }
+        positiveIntegerType length() const{ return matrix.get_number_of_rows(); }
         
         scalarType dot(const ZVector&) const;
         scalarType norm(scalarType=2) const;
@@ -104,13 +104,13 @@ void gemm(
     scalarType a=1,
     scalarType b=1)
 {
-    assert(C.getNumberOfRows() == A.getNumberOfRows());
-    assert(A.getNumberOfColumns() == B.getNumberOfRows());
+    assert(C.get_number_of_rows() == A.get_number_of_rows());
+    assert(A.getNumberOfColumns() == B.get_number_of_rows());
     assert(C.getNumberOfColumns() == B.getNumberOfColumns());
-    for(auto i=0; i<A.getNumberOfRows(); ++i){
+    for(auto i=0; i<A.get_number_of_rows(); ++i){
         for(auto k=0; k<C.getNumberOfColumns(); ++k){
             auto sum = b * C(i, k);
-            for(auto j=0; j<B.getNumberOfRows(); ++j){
+            for(auto j=0; j<B.get_number_of_rows(); ++j){
                sum += a * A(i,j) * B(j,k);
             }
             C(i, k) = sum;

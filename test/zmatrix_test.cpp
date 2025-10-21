@@ -15,11 +15,11 @@ namespace {
     static_assert(isNotCopyConstructible);
 }
 
-TEST(ZMatrix, getNumberOfRows){
+TEST(ZMatrix, get_number_of_rows){
     zlab::integerType expectedNumberOfRows = 3;
     zlab::integerType numberOfColumns = 5;
     zlab::ZMatrix matrix(expectedNumberOfRows, numberOfColumns);
-    auto numberOfRows = matrix.getNumberOfRows();
+    auto numberOfRows = matrix.get_number_of_rows();
     ASSERT_EQ(numberOfRows, expectedNumberOfRows);    
 }
 
@@ -55,7 +55,7 @@ TEST(ZVector, dotProdut){
 
 TEST(ZVector, copyMatrixRowView){
     zlab::ZMatrix matrix(3,3,1);
-    for(auto i=0; i < matrix.getNumberOfRows(); ++i){
+    for(auto i=0; i < matrix.get_number_of_rows(); ++i){
         for (auto j=0; j < matrix.getNumberOfColumns(); j++){
             matrix(i,j) = 10*i + j;
         }
@@ -72,7 +72,7 @@ TEST(ZVector, copyMatrixRowView){
 
 TEST(ZVector, copyMatrixColumnView){
     zlab::ZMatrix matrix(3,3,1);
-    for(auto i=0; i < matrix.getNumberOfRows(); ++i){
+    for(auto i=0; i < matrix.get_number_of_rows(); ++i){
         for (auto j=0; j < matrix.getNumberOfColumns(); j++){
             matrix(i,j) = 10*i + j;
         }
@@ -142,7 +142,7 @@ TEST(ZMatrix, deepCopy){
     zlab::ZMatrix matrix(3,3,2.5);
     auto newMatrix = matrix.copy();
     auto tolerance = zlab::evaluateSafeTolerance();
-    for (auto i=0; i < matrix.getNumberOfRows(); i++){
+    for (auto i=0; i < matrix.get_number_of_rows(); i++){
         for (auto j=0; j < matrix.getNumberOfColumns(); j++){
             EXPECT_NEAR(matrix(i,j), newMatrix(i,j), tolerance); 
         }
@@ -154,7 +154,7 @@ TEST(ZMatrix, fill){
     zlab::scalarType fillValue = 3;
     matrix.fill(fillValue);
     auto tolerance = zlab::evaluateSafeTolerance();
-    for (auto i=0; i < matrix.getNumberOfRows(); i++){
+    for (auto i=0; i < matrix.get_number_of_rows(); i++){
         for (auto j=0; j < matrix.getNumberOfColumns(); j++){
             EXPECT_NEAR(matrix(i,j), fillValue, tolerance); 
         }
@@ -163,7 +163,7 @@ TEST(ZMatrix, fill){
 
 TEST(ZMatrix, gemm){
     zlab::ZMatrix A(3,4), B(4,2), C(3,2,1), R(3,2);
-    for (auto i=0; i<A.getNumberOfRows(); ++i){
+    for (auto i=0; i<A.get_number_of_rows(); ++i){
         for (auto j=0; j<A.getNumberOfColumns(); ++j){
             A(i,j) = i+1;
         }
@@ -177,7 +177,7 @@ TEST(ZMatrix, gemm){
     R(1, 0) = 19; R(1, 1) = 35;
     R(2, 0) = 27; R(2, 1) = 51;
     auto tolerance = zlab::evaluateSafeTolerance();
-    for (auto i=0; i < R.getNumberOfRows(); i++){
+    for (auto i=0; i < R.get_number_of_rows(); i++){
         for (auto j=0; j < R.getNumberOfColumns(); j++){
             EXPECT_NEAR(C(i,j), R(i,j), tolerance); 
         }

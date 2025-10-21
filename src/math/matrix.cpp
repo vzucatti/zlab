@@ -97,7 +97,7 @@ ColumnView::ColumnView(
     integerType columnIndex) : 
     matrix(matrix), 
     columnIndex(columnIndex) {
-    assert(columnIndex < matrix.getNumberOfRows() && columnIndex > -1);
+    assert(columnIndex < matrix.get_number_of_rows() && columnIndex > -1);
 }
 
 const scalarType& ColumnView::operator[](integerType rowIndex) const {
