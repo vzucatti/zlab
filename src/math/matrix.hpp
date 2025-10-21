@@ -1,6 +1,7 @@
 
 #pragma once
 
+#include <concepts>
 #include <cassert>
 #include <vector>
 #include <span>
@@ -87,6 +88,12 @@ class ZVector {
         scalarType norm(scalarType=2) const;
 
         void print() const { matrix.print(); };
+};
+
+template <typename vectorType>
+concept VectorConcept = requires(const vectorType v, positiveIntegerType i) {
+    v.length();
+    v[i];
 };
 
 template <typename vectorType>
