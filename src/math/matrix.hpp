@@ -38,7 +38,7 @@ class ZMatrix{
         scalarType& operator()(integerType, integerType);
         const scalarType& operator()(integerType, integerType) const;
         
-        std::span<const scalarType> row_view(integerType) const;
+        std::span<scalarType> row_view(integerType);
         ColumnView column_view(integerType) const;
 
         positiveIntegerType get_number_of_rows() const { return numberOfRows; }
@@ -74,7 +74,7 @@ class ZVector {
         
         void fill(scalarType);
 
-        ZVector& operator=(std::span<const scalarType>);
+        ZVector& operator=(const std::span<scalarType>);
         ZVector& operator=(const ColumnView&);
 
         scalarType& operator[](integerType i) { return matrix(i,0); }

@@ -53,7 +53,7 @@ ZVector ZVector::copy() const {
     return clone;
 }
 
-ZVector& ZVector::operator=(std::span<const scalarType> view){
+ZVector& ZVector::operator=(const std::span<scalarType> view){
     assert(view.size() == length());
     for(auto i=0; i < view.size(); ++i){
         (*this)[i] = view[i];
@@ -82,10 +82,10 @@ const scalarType& ZMatrix::operator()(integerType row, integerType column) const
     return data[compute_vector_index(row,column)];
 }
 
-std::span<const scalarType> ZMatrix::row_view(integerType rowIndex) const{
+std::span<scalarType> ZMatrix::row_view(integerType rowIndex) {
     assert(rowIndex < numberOfRows && rowIndex > -1);
-    const scalarType* rowStartPointer = data.data() + (rowIndex * numberOfColumns);
-    return std::span<const scalarType>(rowStartPointer, numberOfColumns);
+    scalarType* rowStartPointer = data.data() + (rowIndex * numberOfColumns);
+    return std::span<scalarType>(rowStartPointer, numberOfColumns);
 }
 
 ColumnView ZMatrix::column_view(integerType columnIndex) const {
