@@ -54,10 +54,8 @@ class ColumnView {
         positiveIntegerType columnIndex;
     public:
         ColumnView(const ZMatrix&, integerType);
-
-        positiveIntegerType size() const { return matrix.getNumberOfRows(); }
-        
         const scalarType& operator[](integerType) const;
+        positiveIntegerType size() const { return matrix.getNumberOfRows(); }
 };
 
 class ZVector {
