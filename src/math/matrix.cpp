@@ -27,6 +27,7 @@ ZMatrix::ZMatrix(
 }
 
 ZMatrix& ZMatrix::operator=(const ZMatrix& matrix){
+    if (this == &matrix) return *this;
     assert(matrix.numberOfColumns == numberOfColumns && matrix.numberOfRows == numberOfRows);
     data = matrix.data;
     return *this;
