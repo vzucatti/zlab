@@ -126,6 +126,7 @@ void ZVector::fill(scalarType fillValue) {
 }
 
 ZVector& ZVector::operator=(const ZVector& v) {
+    if (this == &v) return *this;
     matrix = v.matrix;
     return *this;
 }
