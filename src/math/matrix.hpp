@@ -98,6 +98,14 @@ void axpy(scalarType a, const vectorType& x, vectorType& y){
 }
 
 template <typename vectorType>
+void aypx(scalarType a, vectorType& y, const vectorType& x){
+    assert(x.length() == y.length());
+    for(auto i=0; i < x.length(); i++){
+        y[i] = a * y[i] + x[i];
+    }
+}
+
+template <typename vectorType>
 void scale(vectorType& v, scalarType a){
     for(auto i=0; i < v.length(); i++){
         v[i] *=  a;
