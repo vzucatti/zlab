@@ -213,3 +213,13 @@ TEST(ZVector, axpy){
         EXPECT_NEAR(y[i], expectedVector[i], tolerance); 
     }
 }
+
+TEST(ZVector, aypx){
+    zlab::ZVector y(3,2), x(3,6);
+    zlab::scalarType expectedValue{10};
+    zlab::aypx(2,y,x);
+    auto tolerance = zlab::evaluate_safe_tolerance();
+    for (auto i=0; i < y.length(); i++){
+        EXPECT_NEAR(y[i], expectedValue, tolerance); 
+    }
+}
