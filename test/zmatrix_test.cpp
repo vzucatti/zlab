@@ -194,6 +194,16 @@ TEST(ZVector, fill){
     }
 }
 
+TEST(ZVector, scale){
+    zlab::ZVector v(3,1);
+    zlab::scalarType expectedValue{2};
+    zlab::scale(v,expectedValue);
+    auto tolerance = zlab::evaluate_safe_tolerance();
+    for (auto i=0; i < v.length(); i++){
+        EXPECT_NEAR(v[i], expectedValue, tolerance); 
+    }
+}
+
 TEST(ZVector, axpy){
     zlab::ZVector y(2,2), x(2,2), expectedVector(2,22);
     zlab::scalarType a{10};
