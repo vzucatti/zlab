@@ -64,6 +64,7 @@ class ZVector {
     private:
         ZMatrix matrix;
     public:
+        ZVector() = delete;
         ZVector(positiveIntegerType length, scalarType fillValue=0) : matrix(length,1, fillValue) {}
         
         ZVector copy() const;
