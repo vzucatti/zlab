@@ -41,8 +41,8 @@ ZMatrix& ZMatrix::operator=(ZMatrix&& matrix){
 }
 
 ZMatrix ZMatrix::copy() const {
-    ZMatrix clone(this->numberOfRows, this->numberOfColumns);
-    clone.data = this->data;
+    ZMatrix clone(numberOfRows, numberOfColumns);
+    clone.data = data;
     return clone;
 }
 
