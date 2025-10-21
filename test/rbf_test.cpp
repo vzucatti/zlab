@@ -11,7 +11,7 @@ TEST(BumpRBF, Center) {
     auto evaluationDistance = scalarType{0};
     auto rbfActualValue = rbf.evaluate(evaluationDistance);
     auto rbfExpectedValue = std::exp(-1); // TODO: explain why this value is expected
-    auto tolerance = zlab::evaluateSafeTolerance();
+    auto tolerance = zlab::evaluate_safe_tolerance();
     EXPECT_NEAR(rbfExpectedValue, rbfActualValue, tolerance);
 }
 
@@ -24,7 +24,7 @@ TEST(BumpRBF, OutsideSupport) {
     auto evaluationDistance = scalarType{1.05};
     auto rbfActualValue = rbf.evaluate(evaluationDistance);
     auto rbfExpectedValue = scalarType{0};
-    auto tolerance = zlab::evaluateSafeTolerance();
+    auto tolerance = zlab::evaluate_safe_tolerance();
     EXPECT_NEAR(rbfExpectedValue, rbfActualValue, tolerance); 
 }
 
@@ -35,7 +35,7 @@ TEST(WendlandC0RBF, Center) {
     auto evaluationDistance = scalarType{0};
     auto rbfActualValue = rbf.evaluate(evaluationDistance);
     auto rbfExpectedValue = scalarType{1}; // TODO: explain why this value is expected
-    auto tolerance = zlab::evaluateSafeTolerance();
+    auto tolerance = zlab::evaluate_safe_tolerance();
     EXPECT_NEAR(rbfExpectedValue, rbfActualValue, tolerance);
 }
 
@@ -48,7 +48,7 @@ TEST(WendlandC0RBF, OutsideSupport) {
     auto evaluationDistance = scalarType{1.05};
     auto rbfActualValue = rbf.evaluate(evaluationDistance);
     auto rbfExpectedValue = scalarType{0}; // TODO: explain why this value is expected
-    auto tolerance = zlab::evaluateSafeTolerance();
+    auto tolerance = zlab::evaluate_safe_tolerance();
     EXPECT_NEAR(rbfExpectedValue, rbfActualValue, tolerance);
 }
 
@@ -59,7 +59,7 @@ TEST(WendlandC2RBF, Center) {
     auto evaluationDistance = scalarType{0};
     auto rbfActualValue = rbf.evaluate(evaluationDistance);
     auto rbfExpectedValue = scalarType{1}; // TODO: explain why this value is expected
-    auto tolerance = zlab::evaluateSafeTolerance();
+    auto tolerance = zlab::evaluate_safe_tolerance();
     EXPECT_NEAR(rbfExpectedValue, rbfActualValue, tolerance);
 }
 
@@ -72,6 +72,6 @@ TEST(WendlandC2RBF, OutsideSupport) {
     auto evaluationDistance = scalarType{1.05};
     auto rbfActualValue = rbf.evaluate(evaluationDistance);
     auto rbfExpectedValue = scalarType{0}; // TODO: explain why this value is expected
-    auto tolerance = zlab::evaluateSafeTolerance();
+    auto tolerance = zlab::evaluate_safe_tolerance();
     EXPECT_NEAR(rbfExpectedValue, rbfActualValue, tolerance);
 }

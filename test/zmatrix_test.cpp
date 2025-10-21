@@ -49,7 +49,7 @@ TEST(ZVector, dotProdut){
     zlab::ZVector v1(3,1), v2(3,2);
     auto actualResult = v1.dot(v2);
     zlab::scalarType expectedResult{6};
-    auto tolerance = zlab::evaluateSafeTolerance();
+    auto tolerance = zlab::evaluate_safe_tolerance();
     EXPECT_NEAR(actualResult, expectedResult, tolerance); 
 }
 
@@ -62,7 +62,7 @@ TEST(ZVector, copyMatrixRowView){
     }
     zlab::ZVector vector(3);
     vector = matrix.row_view(0);
-    auto tolerance = zlab::evaluateSafeTolerance();
+    auto tolerance = zlab::evaluate_safe_tolerance();
     for (auto i=0; i < vector.length(); ++i){
         auto expectedResult = i;
         auto actualResult = vector[i];
@@ -79,7 +79,7 @@ TEST(ZVector, copyMatrixColumnView){
     }
     zlab::ZVector vector(3);
     vector = matrix.column_view(0);
-    auto tolerance = zlab::evaluateSafeTolerance();
+    auto tolerance = zlab::evaluate_safe_tolerance();
     for (auto i=0; i < vector.length(); ++i){
         auto expectedResult = 10*i;
         auto actualResult = vector[i];
@@ -93,7 +93,7 @@ TEST(ZVector, L1_norm){
     v.print();    
     auto actualNorm = v.norm(1);
     zlab::scalarType expectedNorm{6};
-    auto tolerance = zlab::evaluateSafeTolerance();
+    auto tolerance = zlab::evaluate_safe_tolerance();
     EXPECT_NEAR(actualNorm, expectedNorm, tolerance); 
 }
 
@@ -103,7 +103,7 @@ TEST(ZVector, L2_norm){
     v.print();    
     auto actualNorm = v.norm(2);
     zlab::scalarType expectedNorm{std::sqrt(14)};
-    auto tolerance = zlab::evaluateSafeTolerance();
+    auto tolerance = zlab::evaluate_safe_tolerance();
     EXPECT_NEAR(actualNorm, expectedNorm, tolerance); 
 }
 
@@ -113,7 +113,7 @@ TEST(ZVector, L3_norm){
     v.print();    
     auto actualNorm = v.norm(3);
     zlab::scalarType expectedNorm{std::pow(6, 2.0/3.0)};
-    auto tolerance = zlab::evaluateSafeTolerance();
+    auto tolerance = zlab::evaluate_safe_tolerance();
     EXPECT_NEAR(actualNorm, expectedNorm, tolerance); 
 }
 
@@ -123,7 +123,7 @@ TEST(ZVector, L4_norm){
     v.print();    
     auto actualNorm = v.norm(4);
     zlab::scalarType expectedNorm{std::pow(2, 0.25) * std::sqrt(7)};
-    auto tolerance = zlab::evaluateSafeTolerance();
+    auto tolerance = zlab::evaluate_safe_tolerance();
     EXPECT_NEAR(actualNorm, expectedNorm, tolerance); 
 }
 
@@ -134,14 +134,14 @@ TEST(ZVector, Linf_norm){
     auto infinity = std::numeric_limits<zlab::scalarType>::infinity();
     auto actualNorm = v.norm(infinity);
     zlab::scalarType expectedNorm{3};
-    auto tolerance = zlab::evaluateSafeTolerance();
+    auto tolerance = zlab::evaluate_safe_tolerance();
     EXPECT_NEAR(actualNorm, expectedNorm, tolerance); 
 }
 
 TEST(ZMatrix, deepCopy){
     zlab::ZMatrix matrix(3,3,2.5);
     auto newMatrix = matrix.copy();
-    auto tolerance = zlab::evaluateSafeTolerance();
+    auto tolerance = zlab::evaluate_safe_tolerance();
     for (auto i=0; i < matrix.get_number_of_rows(); i++){
         for (auto j=0; j < matrix.get_number_of_columns(); j++){
             EXPECT_NEAR(matrix(i,j), newMatrix(i,j), tolerance); 
@@ -153,7 +153,7 @@ TEST(ZMatrix, fill){
     zlab::ZMatrix matrix(3,4);
     zlab::scalarType fillValue = 3;
     matrix.fill(fillValue);
-    auto tolerance = zlab::evaluateSafeTolerance();
+    auto tolerance = zlab::evaluate_safe_tolerance();
     for (auto i=0; i < matrix.get_number_of_rows(); i++){
         for (auto j=0; j < matrix.get_number_of_columns(); j++){
             EXPECT_NEAR(matrix(i,j), fillValue, tolerance); 
@@ -176,7 +176,7 @@ TEST(ZMatrix, gemm){
     R(0, 0) = 11; R(0, 1) = 19;
     R(1, 0) = 19; R(1, 1) = 35;
     R(2, 0) = 27; R(2, 1) = 51;
-    auto tolerance = zlab::evaluateSafeTolerance();
+    auto tolerance = zlab::evaluate_safe_tolerance();
     for (auto i=0; i < R.get_number_of_rows(); i++){
         for (auto j=0; j < R.get_number_of_columns(); j++){
             EXPECT_NEAR(C(i,j), R(i,j), tolerance); 
@@ -188,7 +188,7 @@ TEST(ZVector, fill){
     zlab::ZVector vector(3);
     zlab::scalarType fillValue = 3;
     vector.fill(fillValue);
-    auto tolerance = zlab::evaluateSafeTolerance();
+    auto tolerance = zlab::evaluate_safe_tolerance();
     for (auto i=0; i < vector.length(); i++){
         EXPECT_NEAR(vector[i], fillValue, tolerance); 
     }
@@ -198,7 +198,7 @@ TEST(ZVector, axpy){
     zlab::ZVector y(2,2), x(2,2), expectedVector(2,22);
     zlab::scalarType a{10};
     zlab::axpy(a,x,y);
-    auto tolerance = zlab::evaluateSafeTolerance();
+    auto tolerance = zlab::evaluate_safe_tolerance();
     for (auto i=0; i < y.length(); i++){
         EXPECT_NEAR(y[i], expectedVector[i], tolerance); 
     }

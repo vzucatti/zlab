@@ -10,6 +10,6 @@ using scalarType = double;
 using integerType = int;
 using positiveIntegerType = std::size_t;
 
-scalarType evaluateSafeTolerance(scalarType = 1e2);
+scalarType evaluate_safe_tolerance(scalarType = 1e2);
 
 } // end namespce zlab

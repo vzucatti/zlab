@@ -146,7 +146,7 @@ auto RungeKuttaSolver<numberOfStages, functionType>::solve(std::function<void(in
     
     auto K = allocate_stage_buffers();
 
-    auto safeZero = evaluateSafeTolerance();
+    auto safeZero = evaluate_safe_tolerance();
       
     for (auto it=0; it < numberTimeSteps; it++){
         for(auto s=0; s < numberOfStages; s++){
