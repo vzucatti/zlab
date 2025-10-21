@@ -97,6 +97,13 @@ void axpy(scalarType a, const vectorType& x, vectorType& y){
     }
 }
 
+template <typename vectorType>
+void scale(vectorType& v, scalarType a){
+    for(auto i=0; i < v.length(); i++){
+        v[i] *=  a;
+    }
+}
+
 template <typename matrixType>
 void gemm(
     const matrixType& A, 
