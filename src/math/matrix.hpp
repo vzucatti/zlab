@@ -67,7 +67,7 @@ class ZVector {
         ZVector() = delete;
         ZVector(const ZVector&) = delete;
         ZVector(ZVector&&);
-        ZVector(positiveIntegerType length, scalarType fillValue=0) : matrix(length,1, fillValue) {}
+        ZVector(integerType, scalarType=0);
         virtual ~ZVector() = default;
         ZVector& operator=(const ZVector&);
         ZVector& operator=(ZVector&&);

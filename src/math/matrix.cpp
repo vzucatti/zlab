@@ -148,6 +148,8 @@ scalarType ZVector::dot(const ZVector& vector) const {
     return result;
 }
 
+ZVector::ZVector(integerType length, scalarType fillValue) : matrix(length,1, fillValue) {}
+
 scalarType ZVector::norm(scalarType p) const {
     if (p == std::numeric_limits<scalarType>::infinity()) {
         scalarType max_abs = 0.0;
