@@ -42,7 +42,7 @@ class ZMatrix{
         ColumnView column_view(integerType) const;
 
         positiveIntegerType get_number_of_rows() const { return numberOfRows; }
-        positiveIntegerType getNumberOfColumns() const { return numberOfColumns; }
+        positiveIntegerType get_number_of_columns() const { return numberOfColumns; }
         positiveIntegerType get_number_of_elements() const;
         
         void print() const;
@@ -105,10 +105,10 @@ void gemm(
     scalarType b=1)
 {
     assert(C.get_number_of_rows() == A.get_number_of_rows());
-    assert(A.getNumberOfColumns() == B.get_number_of_rows());
-    assert(C.getNumberOfColumns() == B.getNumberOfColumns());
+    assert(A.get_number_of_columns() == B.get_number_of_rows());
+    assert(C.get_number_of_columns() == B.get_number_of_columns());
     for(auto i=0; i<A.get_number_of_rows(); ++i){
-        for(auto k=0; k<C.getNumberOfColumns(); ++k){
+        for(auto k=0; k<C.get_number_of_columns(); ++k){
             auto sum = b * C(i, k);
             for(auto j=0; j<B.get_number_of_rows(); ++j){
                sum += a * A(i,j) * B(j,k);

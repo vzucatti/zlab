@@ -23,11 +23,11 @@ TEST(ZMatrix, get_number_of_rows){
     ASSERT_EQ(numberOfRows, expectedNumberOfRows);    
 }
 
-TEST(ZMatrix, getNumberOfColumns){
+TEST(ZMatrix, get_number_of_columns){
     zlab::integerType numberOfRows = 3;
     zlab::integerType expectedNumberOfColumns = 5;
     zlab::ZMatrix matrix(numberOfRows, expectedNumberOfColumns);
-    auto numberOfColumns = matrix.getNumberOfColumns();
+    auto numberOfColumns = matrix.get_number_of_columns();
     ASSERT_EQ(numberOfColumns, expectedNumberOfColumns);    
 }
 
@@ -56,7 +56,7 @@ TEST(ZVector, dotProdut){
 TEST(ZVector, copyMatrixRowView){
     zlab::ZMatrix matrix(3,3,1);
     for(auto i=0; i < matrix.get_number_of_rows(); ++i){
-        for (auto j=0; j < matrix.getNumberOfColumns(); j++){
+        for (auto j=0; j < matrix.get_number_of_columns(); j++){
             matrix(i,j) = 10*i + j;
         }
     }
@@ -73,7 +73,7 @@ TEST(ZVector, copyMatrixRowView){
 TEST(ZVector, copyMatrixColumnView){
     zlab::ZMatrix matrix(3,3,1);
     for(auto i=0; i < matrix.get_number_of_rows(); ++i){
-        for (auto j=0; j < matrix.getNumberOfColumns(); j++){
+        for (auto j=0; j < matrix.get_number_of_columns(); j++){
             matrix(i,j) = 10*i + j;
         }
     }
@@ -143,7 +143,7 @@ TEST(ZMatrix, deepCopy){
     auto newMatrix = matrix.copy();
     auto tolerance = zlab::evaluateSafeTolerance();
     for (auto i=0; i < matrix.get_number_of_rows(); i++){
-        for (auto j=0; j < matrix.getNumberOfColumns(); j++){
+        for (auto j=0; j < matrix.get_number_of_columns(); j++){
             EXPECT_NEAR(matrix(i,j), newMatrix(i,j), tolerance); 
         }
     }
@@ -155,7 +155,7 @@ TEST(ZMatrix, fill){
     matrix.fill(fillValue);
     auto tolerance = zlab::evaluateSafeTolerance();
     for (auto i=0; i < matrix.get_number_of_rows(); i++){
-        for (auto j=0; j < matrix.getNumberOfColumns(); j++){
+        for (auto j=0; j < matrix.get_number_of_columns(); j++){
             EXPECT_NEAR(matrix(i,j), fillValue, tolerance); 
         }
     }
@@ -164,7 +164,7 @@ TEST(ZMatrix, fill){
 TEST(ZMatrix, gemm){
     zlab::ZMatrix A(3,4), B(4,2), C(3,2,1), R(3,2);
     for (auto i=0; i<A.get_number_of_rows(); ++i){
-        for (auto j=0; j<A.getNumberOfColumns(); ++j){
+        for (auto j=0; j<A.get_number_of_columns(); ++j){
             A(i,j) = i+1;
         }
     }
@@ -178,7 +178,7 @@ TEST(ZMatrix, gemm){
     R(2, 0) = 27; R(2, 1) = 51;
     auto tolerance = zlab::evaluateSafeTolerance();
     for (auto i=0; i < R.get_number_of_rows(); i++){
-        for (auto j=0; j < R.getNumberOfColumns(); j++){
+        for (auto j=0; j < R.get_number_of_columns(); j++){
             EXPECT_NEAR(C(i,j), R(i,j), tolerance); 
         }
     }
