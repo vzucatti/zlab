@@ -125,6 +125,18 @@ void ZVector::fill(scalarType fillValue) {
     matrix.fill(fillValue);
 }
 
+ZVector& ZVector::operator=(const ZVector& v) {
+    matrix = v.matrix;
+    return *this;
+}
+
+ZVector& ZVector::operator=(ZVector&& v) {
+    matrix = std::move(v.matrix);
+    return *this;
+}
+
+ZVector::ZVector(ZVector&& v) : matrix(std::move(v.matrix)) {}
+
 scalarType ZVector::dot(const ZVector& vector) const {
     assert(vector.length() == length());
     scalarType result{0};
