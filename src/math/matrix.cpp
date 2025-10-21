@@ -69,17 +69,17 @@ ZVector& ZVector::operator=(const ColumnView& view){
     return *this;
 }
 
-positiveIntegerType ZMatrix::computeVectorIndex(integerType row, integerType column) const {
+positiveIntegerType ZMatrix::compute_vector_index(integerType row, integerType column) const {
     assert(row < numberOfRows && column < numberOfColumns);
     return row * numberOfColumns + column;
 }
 
 scalarType& ZMatrix::operator()(integerType row, integerType column) {
-    return data[computeVectorIndex(row,column)];
+    return data[compute_vector_index(row,column)];
 }
 
 const scalarType& ZMatrix::operator()(integerType row, integerType column) const {
-    return data[computeVectorIndex(row,column)];
+    return data[compute_vector_index(row,column)];
 }
 
 std::span<const scalarType> ZMatrix::row_view(integerType rowIndex) const{

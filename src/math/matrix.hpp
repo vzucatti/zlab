@@ -21,7 +21,7 @@ class ZMatrix{
         positiveIntegerType numberOfRows;
         positiveIntegerType numberOfColumns;
         
-        positiveIntegerType computeVectorIndex(integerType, integerType) const;
+        positiveIntegerType compute_vector_index(integerType, integerType) const;
     public:
         ZMatrix() = delete;
         ZMatrix(const ZMatrix&) = delete;
