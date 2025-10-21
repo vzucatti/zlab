@@ -97,6 +97,7 @@ concept VectorConcept = requires(const vectorType v, positiveIntegerType i) {
 };
 
 template <typename vectorType>
+requires VectorConcept<vectorType>
 void axpy(scalarType a, const vectorType& x, vectorType& y){
     assert(x.length() == y.length());
     for(auto i=0; i < x.length(); i++){
@@ -105,6 +106,7 @@ void axpy(scalarType a, const vectorType& x, vectorType& y){
 }
 
 template <typename vectorType>
+requires VectorConcept<vectorType>
 void axpby(scalarType a, const vectorType& x, scalarType b, vectorType& y){
     assert(x.length() == y.length());
     for(auto i=0; i < x.length(); i++){
@@ -113,6 +115,7 @@ void axpby(scalarType a, const vectorType& x, scalarType b, vectorType& y){
 }
 
 template <typename vectorType>
+requires VectorConcept<vectorType>
 void aypx(scalarType a, vectorType& y, const vectorType& x){
     assert(x.length() == y.length());
     for(auto i=0; i < x.length(); i++){
@@ -121,6 +124,7 @@ void aypx(scalarType a, vectorType& y, const vectorType& x){
 }
 
 template <typename vectorType>
+requires VectorConcept<vectorType>
 void scale(vectorType& v, scalarType a){
     for(auto i=0; i < v.length(); i++){
         v[i] *=  a;
