@@ -39,7 +39,7 @@ class ZMatrix{
         const scalarType& operator()(integerType, integerType) const;
         
         std::span<scalarType> row_view(integerType);
-        ColumnView column_view(integerType) const;
+        ColumnView column_view(integerType);
 
         positiveIntegerType get_number_of_rows() const { return numberOfRows; }
         positiveIntegerType get_number_of_columns() const { return numberOfColumns; }
@@ -50,10 +50,11 @@ class ZMatrix{
 
 class ColumnView {
     private:
-        const ZMatrix& matrix;
+        ZMatrix& matrix;
         positiveIntegerType columnIndex;
     public:
-        ColumnView(const ZMatrix&, integerType);
+        ColumnView(ZMatrix&, integerType);
+        scalarType& operator[](integerType);
         const scalarType& operator[](integerType) const;
         positiveIntegerType size() const { return matrix.get_number_of_rows(); }
 };
