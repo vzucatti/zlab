@@ -146,6 +146,16 @@ scalarType norm(vectorType&v, scalarType p=2) {
     }
 }
 
+template <VectorConcept vectorTypeX, VectorConcept vectorTypeY>
+scalarType dot(const vectorTypeX& x, const vectorTypeY& y) {
+    assert(x.size() == y.size());
+    scalarType result{0};
+    for(auto i=0; i < x.size(); i++){
+        result += x[i] * y[i];
+    }
+    return result;
+}
+
 template <typename matrixType>
 void gemm(
     const matrixType& A, 
