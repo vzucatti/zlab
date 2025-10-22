@@ -1,8 +1,10 @@
 
 #pragma once
 
+#include <stdexcept>
 #include <concepts>
 #include <cassert>
+#include <limits>
 #include <vector>
 #include <span>
 
