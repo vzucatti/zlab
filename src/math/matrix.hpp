@@ -105,9 +105,8 @@ void axpy(scalarType a, const vectorType& x, vectorType& y){
     }
 }
 
-template <typename vectorType>
-requires VectorConcept<vectorType>
-void axpby(scalarType a, const vectorType& x, scalarType b, vectorType& y){
+template <VectorConcept vectorTypeX, VectorConcept vectorTypeY>
+void axpby(scalarType a, const vectorTypeX& x, scalarType b, vectorTypeY& y){
     assert(x.length() == y.length());
     for(auto i=0; i < x.length(); i++){
         y[i] =  a * x[i] + b * y[i];
