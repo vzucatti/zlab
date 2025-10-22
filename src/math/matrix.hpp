@@ -96,9 +96,8 @@ concept VectorConcept = requires(const vectorType v, positiveIntegerType i) {
     v[i];
 };
 
-template <typename vectorType>
-requires VectorConcept<vectorType>
-void axpy(scalarType a, const vectorType& x, vectorType& y){
+template <VectorConcept vectorTypeX, VectorConcept vectorTypeY>
+void axpy(scalarType a, const vectorTypeX& x, vectorTypeY& y){
     assert(x.length() == y.length());
     for(auto i=0; i < x.length(); i++){
         y[i] +=  a * x[i];
