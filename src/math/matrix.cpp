@@ -142,15 +142,6 @@ ZVector& ZVector::operator=(ZVector&& v) {
 
 ZVector::ZVector(ZVector&& v) : matrix(std::move(v.matrix)) {}
 
-scalarType ZVector::dot(const ZVector& vector) const {
-    assert(vector.size() == size());
-    scalarType result{0};
-    for(auto i=0; i < vector.size(); i++){
-        result += (*this)[i] * vector[i];
-    }
-    return result;
-}
-
 ZVector::ZVector(integerType size, scalarType fillValue) : matrix(size,1, fillValue) {}
 
 } // end namespace zlab

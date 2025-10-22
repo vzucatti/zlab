@@ -85,8 +85,6 @@ class ZVector {
 
         positiveIntegerType size() const{ return matrix.get_number_of_rows(); }
         
-        scalarType dot(const ZVector&) const;
-        
         void print() const { matrix.print(); };
 };
 
