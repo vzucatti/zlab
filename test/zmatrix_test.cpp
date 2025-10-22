@@ -91,7 +91,7 @@ TEST(ZVector, L1_norm){
     zlab::ZVector v(3);
     for (auto i=0; i<v.size();++i) v[i] = i+1;
     v.print();    
-    auto actualNorm = v.norm(1);
+    auto actualNorm = norm(v,1);
     zlab::scalarType expectedNorm{6};
     auto tolerance = zlab::evaluate_safe_tolerance();
     EXPECT_NEAR(actualNorm, expectedNorm, tolerance); 
@@ -101,7 +101,7 @@ TEST(ZVector, L2_norm){
     zlab::ZVector v(3);
     for (auto i=0; i<v.size();++i) v[i] = i+1;
     v.print();    
-    auto actualNorm = v.norm(2);
+    auto actualNorm = norm(v,2);
     zlab::scalarType expectedNorm{std::sqrt(14)};
     auto tolerance = zlab::evaluate_safe_tolerance();
     EXPECT_NEAR(actualNorm, expectedNorm, tolerance); 
@@ -111,7 +111,7 @@ TEST(ZVector, L3_norm){
     zlab::ZVector v(3);
     for (auto i=0; i<v.size();++i) v[i] = i+1;
     v.print();    
-    auto actualNorm = v.norm(3);
+    auto actualNorm = norm(v,3);
     zlab::scalarType expectedNorm{std::pow(6, 2.0/3.0)};
     auto tolerance = zlab::evaluate_safe_tolerance();
     EXPECT_NEAR(actualNorm, expectedNorm, tolerance); 
@@ -121,7 +121,7 @@ TEST(ZVector, L4_norm){
     zlab::ZVector v(3);
     for (auto i=0; i<v.size();++i) v[i] = i+1;
     v.print();    
-    auto actualNorm = v.norm(4);
+    auto actualNorm = norm(v,4);
     zlab::scalarType expectedNorm{std::pow(2, 0.25) * std::sqrt(7)};
     auto tolerance = zlab::evaluate_safe_tolerance();
     EXPECT_NEAR(actualNorm, expectedNorm, tolerance); 
@@ -132,7 +132,7 @@ TEST(ZVector, Linf_norm){
     for (auto i=0; i<v.size();++i) v[i] = i+1;
     v.print();
     auto infinity = std::numeric_limits<zlab::scalarType>::infinity();
-    auto actualNorm = v.norm(infinity);
+    auto actualNorm = norm(v,infinity);
     zlab::scalarType expectedNorm{3};
     auto tolerance = zlab::evaluate_safe_tolerance();
     EXPECT_NEAR(actualNorm, expectedNorm, tolerance); 
