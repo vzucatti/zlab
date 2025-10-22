@@ -154,6 +154,16 @@ scalarType dot(const vectorTypeX& x, const vectorTypeY& y) {
     return result;
 }
 
+template <VectorConcept vectorTypeA, VectorConcept vectorTypeB, VectorConcept vectorTypeC>
+void cross(const vectorTypeA& a, const vectorTypeB& b, vectorTypeC& c) {
+    assert(a.size() == 3);
+    assert(b.size() == 3);
+    assert(c.size() == 3);
+    c[0] = a[1] * b[2] - a[2] * b[1];
+    c[1] = a[2] * b[0] - a[0] * b[2];
+    c[2] = a[0] * b[1] - a[1] * b[0];
+}
+
 template <typename matrixType>
 void gemm(
     const matrixType& A, 
