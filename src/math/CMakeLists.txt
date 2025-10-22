@@ -4,7 +4,8 @@ add_library(zlab_math STATIC
     utilities.cpp
     matrix.cpp
     ode.cpp
-    matrix_decomposition.cpp    
+    matrix_decomposition.cpp
+    solvers.cpp
 )
 
 target_include_directories(zlab_math PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
