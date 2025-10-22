@@ -7,6 +7,7 @@ add_executable(
         math_test.cpp
         zmatrix_test.cpp
         ode_test.cpp
+        solvers_test.cpp
 )
 target_link_libraries(
     unit_tests 
