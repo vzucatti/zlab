@@ -62,8 +62,8 @@ ZVector& ZVector::operator=(const std::span<scalarType> view){
 }
 
 ZVector& ZVector::operator=(const ColumnView& view){
-    assert(view.size() == length());
-    for(auto i=0; i < view.size(); ++i){
+    assert(view.length() == length());
+    for(auto i=0; i < view.length(); ++i){
         (*this)[i] = view[i];
     }
     return *this;
