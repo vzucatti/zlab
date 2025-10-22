@@ -120,8 +120,7 @@ void aypx(scalarType a, vectorTypeX& y, const vectorTypeY& x){
     }
 }
 
-template <typename vectorType>
-requires VectorConcept<vectorType>
+template <VectorConcept vectorType>
 void scale(vectorType& v, scalarType a){
     for(auto i=0; i < v.length(); i++){
         v[i] *=  a;
