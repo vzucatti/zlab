@@ -53,6 +53,18 @@ TEST(ZVector, dotProdut){
     EXPECT_NEAR(actualResult, expectedResult, tolerance); 
 }
 
+TEST(ZVector, crossProdut){
+    zlab::ZVector a(3), b(3), c(3), expectedResult(3);
+    a[0] = 1; b[0] = 4; expectedResult[0] = -3;
+    a[1] = 2; b[1] = 5; expectedResult[1] = 6;
+    a[2] = 3; b[2] = 6; expectedResult[2] = -3;
+    zlab::cross(a,b,c);
+    auto tolerance = zlab::evaluate_safe_tolerance();
+    for(auto i=0; i < a.size(); ++i){
+        EXPECT_NEAR(c[i], expectedResult[i], tolerance); 
+    }
+}
+
 TEST(ZVector, copyMatrixRowView){
     zlab::ZMatrix matrix(3,3,1);
     for(auto i=0; i < matrix.get_number_of_rows(); ++i){
