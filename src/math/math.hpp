@@ -5,3 +5,4 @@
 #include "utilities.hpp"
 #include "matrix.hpp"
 #include "ode.hpp"
+#include "matrix_decomposition.hpp"

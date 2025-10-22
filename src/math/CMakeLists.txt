@@ -3,7 +3,8 @@ add_library(zlab_math STATIC
     rbf.cpp
     utilities.cpp
     matrix.cpp
-    ode.cpp    
+    ode.cpp
+    matrix_decomposition.cpp    
 )
 
 target_include_directories(zlab_math PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
