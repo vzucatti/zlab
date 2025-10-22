@@ -6,7 +6,6 @@
 #include <cassert>
 #include <span>
 
-#include "utilities.hpp"
 #include "matrix.hpp"
 
 namespace zlab{
@@ -153,23 +152,5 @@ scalarType ZVector::dot(const ZVector& vector) const {
 }
 
 ZVector::ZVector(integerType size, scalarType fillValue) : matrix(size,1, fillValue) {}
-
-scalarType ZVector::norm(scalarType p) const {
-    if (p == std::numeric_limits<scalarType>::infinity()) {
-        scalarType max_abs = 0.0;
-        for (auto i=0; i < size(); ++i){
-            max_abs = std::max(max_abs, std::abs((*this)[i]));
-        }
-        return max_abs;
-    } else if (p > 0){
-        scalarType sumOfPowers{0};
-        for (auto i=0; i < size(); ++i){
-            sumOfPowers += zlab::pow(std::abs((*this)[i]), p);
-        }
-        return zlab::pow(sumOfPowers, 1.0 / p);
-    } else {
-        throw std::invalid_argument("p must be a positive integer (p > 0) or infinity (std::numeric_limits<double>::infinity()).");
-    }
-}
 
 } // end namespace zlab
