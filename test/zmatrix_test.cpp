@@ -38,11 +38,11 @@ TEST(ZMatrix, get_number_of_elements){
     ASSERT_EQ(numberOfElements, expectedNumberOfElements);    
 }
 
-TEST(ZVector, length){
-    zlab::integerType expectedLength = 5;
+TEST(ZVector, size){
+    zlab::integerType expectedsize = 5;
     zlab::ZVector vector(5);
-    auto actualLength = vector.length();
-    ASSERT_EQ(actualLength, expectedLength);    
+    auto actualsize = vector.size();
+    ASSERT_EQ(actualsize, expectedsize);    
 }
 
 TEST(ZVector, dotProdut){
@@ -63,7 +63,7 @@ TEST(ZVector, copyMatrixRowView){
     zlab::ZVector vector(3);
     vector = matrix.row_view(0);
     auto tolerance = zlab::evaluate_safe_tolerance();
-    for (auto i=0; i < vector.length(); ++i){
+    for (auto i=0; i < vector.size(); ++i){
         auto expectedResult = i;
         auto actualResult = vector[i];
         EXPECT_NEAR(actualResult, expectedResult, tolerance); 
@@ -80,7 +80,7 @@ TEST(ZVector, copyMatrixColumnView){
     zlab::ZVector vector(3);
     vector = matrix.column_view(0);
     auto tolerance = zlab::evaluate_safe_tolerance();
-    for (auto i=0; i < vector.length(); ++i){
+    for (auto i=0; i < vector.size(); ++i){
         auto expectedResult = 10*i;
         auto actualResult = vector[i];
         EXPECT_NEAR(actualResult, expectedResult, tolerance); 
@@ -89,7 +89,7 @@ TEST(ZVector, copyMatrixColumnView){
 
 TEST(ZVector, L1_norm){
     zlab::ZVector v(3);
-    for (auto i=0; i<v.length();++i) v[i] = i+1;
+    for (auto i=0; i<v.size();++i) v[i] = i+1;
     v.print();    
     auto actualNorm = v.norm(1);
     zlab::scalarType expectedNorm{6};
@@ -99,7 +99,7 @@ TEST(ZVector, L1_norm){
 
 TEST(ZVector, L2_norm){
     zlab::ZVector v(3);
-    for (auto i=0; i<v.length();++i) v[i] = i+1;
+    for (auto i=0; i<v.size();++i) v[i] = i+1;
     v.print();    
     auto actualNorm = v.norm(2);
     zlab::scalarType expectedNorm{std::sqrt(14)};
@@ -109,7 +109,7 @@ TEST(ZVector, L2_norm){
 
 TEST(ZVector, L3_norm){
     zlab::ZVector v(3);
-    for (auto i=0; i<v.length();++i) v[i] = i+1;
+    for (auto i=0; i<v.size();++i) v[i] = i+1;
     v.print();    
     auto actualNorm = v.norm(3);
     zlab::scalarType expectedNorm{std::pow(6, 2.0/3.0)};
@@ -119,7 +119,7 @@ TEST(ZVector, L3_norm){
 
 TEST(ZVector, L4_norm){
     zlab::ZVector v(3);
-    for (auto i=0; i<v.length();++i) v[i] = i+1;
+    for (auto i=0; i<v.size();++i) v[i] = i+1;
     v.print();    
     auto actualNorm = v.norm(4);
     zlab::scalarType expectedNorm{std::pow(2, 0.25) * std::sqrt(7)};
@@ -129,7 +129,7 @@ TEST(ZVector, L4_norm){
 
 TEST(ZVector, Linf_norm){
     zlab::ZVector v(3);
-    for (auto i=0; i<v.length();++i) v[i] = i+1;
+    for (auto i=0; i<v.size();++i) v[i] = i+1;
     v.print();
     auto infinity = std::numeric_limits<zlab::scalarType>::infinity();
     auto actualNorm = v.norm(infinity);
@@ -189,7 +189,7 @@ TEST(ZVector, fill){
     zlab::scalarType fillValue = 3;
     vector.fill(fillValue);
     auto tolerance = zlab::evaluate_safe_tolerance();
-    for (auto i=0; i < vector.length(); i++){
+    for (auto i=0; i < vector.size(); i++){
         EXPECT_NEAR(vector[i], fillValue, tolerance); 
     }
 }
@@ -199,7 +199,7 @@ TEST(ZVector, scale){
     zlab::scalarType expectedValue{2};
     zlab::scale(v,expectedValue);
     auto tolerance = zlab::evaluate_safe_tolerance();
-    for (auto i=0; i < v.length(); i++){
+    for (auto i=0; i < v.size(); i++){
         EXPECT_NEAR(v[i], expectedValue, tolerance); 
     }
 }
@@ -209,7 +209,7 @@ TEST(ZVector, axpy){
     zlab::scalarType a{10};
     zlab::axpy(a,x,y);
     auto tolerance = zlab::evaluate_safe_tolerance();
-    for (auto i=0; i < y.length(); i++){
+    for (auto i=0; i < y.size(); i++){
         EXPECT_NEAR(y[i], expectedVector[i], tolerance); 
     }
 }
@@ -219,7 +219,7 @@ TEST(ZVector, aypx){
     zlab::scalarType expectedValue{10};
     zlab::aypx(2,y,x);
     auto tolerance = zlab::evaluate_safe_tolerance();
-    for (auto i=0; i < y.length(); i++){
+    for (auto i=0; i < y.size(); i++){
         EXPECT_NEAR(y[i], expectedValue, tolerance); 
     }
 }
@@ -229,7 +229,7 @@ TEST(ZVector, axpby){
     zlab::scalarType expectedValue{18};
     zlab::axpby(2,x,3,y);
     auto tolerance = zlab::evaluate_safe_tolerance();
-    for (auto i=0; i < y.length(); i++){
+    for (auto i=0; i < y.size(); i++){
         EXPECT_NEAR(y[i], expectedValue, tolerance); 
     }
 }

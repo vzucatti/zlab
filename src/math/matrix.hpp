@@ -57,7 +57,7 @@ class ColumnView {
         ColumnView(ZMatrix&, integerType);
         scalarType& operator[](integerType);
         const scalarType& operator[](integerType) const;
-        positiveIntegerType length() const { return matrix.get_number_of_rows(); }
+        positiveIntegerType size() const { return matrix.get_number_of_rows(); }
 };
 
 class ZVector {
@@ -82,7 +82,7 @@ class ZVector {
         scalarType& operator[](integerType i) { return matrix(i,0); }
         const scalarType& operator[](integerType i) const { return matrix(i, 0); }
 
-        positiveIntegerType length() const{ return matrix.get_number_of_rows(); }
+        positiveIntegerType size() const{ return matrix.get_number_of_rows(); }
         
         scalarType dot(const ZVector&) const;
         scalarType norm(scalarType=2) const;
@@ -92,37 +92,37 @@ class ZVector {
 
 template <typename vectorType>
 concept VectorConcept = requires(const vectorType v, positiveIntegerType i) {
-    v.length();
+    v.size();
     v[i];
 };
 
 template <VectorConcept vectorTypeX, VectorConcept vectorTypeY>
 void axpy(scalarType a, const vectorTypeX& x, vectorTypeY& y){
-    assert(x.length() == y.length());
-    for(auto i=0; i < x.length(); i++){
+    assert(x.size() == y.size());
+    for(auto i=0; i < x.size(); i++){
         y[i] +=  a * x[i];
     }
 }
 
 template <VectorConcept vectorTypeX, VectorConcept vectorTypeY>
 void axpby(scalarType a, const vectorTypeX& x, scalarType b, vectorTypeY& y){
-    assert(x.length() == y.length());
-    for(auto i=0; i < x.length(); i++){
+    assert(x.size() == y.size());
+    for(auto i=0; i < x.size(); i++){
         y[i] =  a * x[i] + b * y[i];
     }
 }
 
 template <VectorConcept vectorTypeX, VectorConcept vectorTypeY>
 void aypx(scalarType a, vectorTypeX& y, const vectorTypeY& x){
-    assert(x.length() == y.length());
-    for(auto i=0; i < x.length(); i++){
+    assert(x.size() == y.size());
+    for(auto i=0; i < x.size(); i++){
         y[i] = a * y[i] + x[i];
     }
 }
 
 template <VectorConcept vectorType>
 void scale(vectorType& v, scalarType a){
-    for(auto i=0; i < v.length(); i++){
+    for(auto i=0; i < v.size(); i++){
         v[i] *=  a;
     }
 }

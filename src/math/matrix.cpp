@@ -48,13 +48,13 @@ ZMatrix ZMatrix::copy() const {
 }
 
 ZVector ZVector::copy() const {
-    ZVector clone(length());
+    ZVector clone(size());
     clone.matrix = matrix;
     return clone;
 }
 
 ZVector& ZVector::operator=(const std::span<scalarType> view){
-    assert(view.size() == length());
+    assert(view.size() == size());
     for(auto i=0; i < view.size(); ++i){
         (*this)[i] = view[i];
     }
@@ -62,8 +62,8 @@ ZVector& ZVector::operator=(const std::span<scalarType> view){
 }
 
 ZVector& ZVector::operator=(const ColumnView& view){
-    assert(view.length() == length());
-    for(auto i=0; i < view.length(); ++i){
+    assert(view.size() == size());
+    for(auto i=0; i < view.size(); ++i){
         (*this)[i] = view[i];
     }
     return *this;
@@ -144,26 +144,26 @@ ZVector& ZVector::operator=(ZVector&& v) {
 ZVector::ZVector(ZVector&& v) : matrix(std::move(v.matrix)) {}
 
 scalarType ZVector::dot(const ZVector& vector) const {
-    assert(vector.length() == length());
+    assert(vector.size() == size());
     scalarType result{0};
-    for(auto i=0; i < vector.length(); i++){
+    for(auto i=0; i < vector.size(); i++){
         result += (*this)[i] * vector[i];
     }
     return result;
 }
 
-ZVector::ZVector(integerType length, scalarType fillValue) : matrix(length,1, fillValue) {}
+ZVector::ZVector(integerType size, scalarType fillValue) : matrix(size,1, fillValue) {}
 
 scalarType ZVector::norm(scalarType p) const {
     if (p == std::numeric_limits<scalarType>::infinity()) {
         scalarType max_abs = 0.0;
-        for (auto i=0; i < length(); ++i){
+        for (auto i=0; i < size(); ++i){
             max_abs = std::max(max_abs, std::abs((*this)[i]));
         }
         return max_abs;
     } else if (p > 0){
         scalarType sumOfPowers{0};
-        for (auto i=0; i < length(); ++i){
+        for (auto i=0; i < size(); ++i){
             sumOfPowers += zlab::pow(std::abs((*this)[i]), p);
         }
         return zlab::pow(sumOfPowers, 1.0 / p);

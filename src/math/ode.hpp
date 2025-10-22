@@ -176,7 +176,7 @@ auto RungeKuttaSolver<numberOfStages, functionType>::allocate_stage_buffers(){
     std::vector<ZVector> K;
     K.reserve(numberOfStages);
     for(auto s=0; s < numberOfStages; s++) {
-        K.emplace_back(initialState.length());
+        K.emplace_back(initialState.size());
     }
     return K;
 }
