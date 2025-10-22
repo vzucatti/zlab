@@ -47,7 +47,7 @@ TEST(ZVector, size){
 
 TEST(ZVector, dotProdut){
     zlab::ZVector v1(3,1), v2(3,2);
-    auto actualResult = v1.dot(v2);
+    auto actualResult = dot(v1,v2);
     zlab::scalarType expectedResult{6};
     auto tolerance = zlab::evaluate_safe_tolerance();
     EXPECT_NEAR(actualResult, expectedResult, tolerance); 
