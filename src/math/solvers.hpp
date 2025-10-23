@@ -56,4 +56,14 @@ void linear_least_squares(
     backward_substitution(R,c,x,marginOfError);
 }
 
+template <typename matrixType, VectorConcept vectorTypeB, VectorConcept vectorTypeX>
+void linear_solver(
+    const matrixType& A,
+    const vectorTypeB& b,
+    vectorTypeX& x,
+    std::optional<scalarType> marginOfError = std::nullopt)
+{
+    linear_least_squares(A,b,x,marginOfError);
+}
+
 } // end zlab namespace
