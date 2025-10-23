@@ -9,7 +9,7 @@
 
 namespace zlab{
 
-ZMatrix::ZMatrix(ZMatrix&& matrix) : numberOfRows(matrix.numberOfRows), numberOfColumns(matrix.numberOfColumns), data(std::move(matrix.data)) {
+ZMatrix::ZMatrix(ZMatrix&& matrix) noexcept : numberOfRows(matrix.numberOfRows), numberOfColumns(matrix.numberOfColumns), data(std::move(matrix.data)) {
     matrix.numberOfRows = 0;
     matrix.numberOfColumns = 0;
 }
@@ -31,7 +31,7 @@ ZMatrix& ZMatrix::operator=(const ZMatrix& matrix){
     return *this;
 }
 
-ZMatrix& ZMatrix::operator=(ZMatrix&& matrix){
+ZMatrix& ZMatrix::operator=(ZMatrix&& matrix) noexcept {
     assert(matrix.numberOfColumns == numberOfColumns && matrix.numberOfRows == numberOfRows);
     data = std::move(matrix.data);
     matrix.numberOfRows = 0;

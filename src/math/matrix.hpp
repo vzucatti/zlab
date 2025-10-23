@@ -29,11 +29,11 @@ class ZMatrix{
     public:
         ZMatrix() = delete;
         ZMatrix(const ZMatrix&) = delete;
-        ZMatrix(ZMatrix&&);
+        ZMatrix(ZMatrix&&) noexcept;
         ZMatrix(integerType, integerType, scalarType=0);
         virtual ~ZMatrix() = default;
         ZMatrix& operator=(const ZMatrix&);
-        ZMatrix& operator=(ZMatrix&&);
+        ZMatrix& operator=(ZMatrix&&) noexcept;
         
         ZMatrix copy() const;
         
