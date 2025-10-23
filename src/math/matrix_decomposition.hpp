@@ -18,7 +18,10 @@ template <typename matrixType>
 using MGS = ModifiedGramSchmidt<matrixType>;
 
 template <typename matrixType>
-MGS<matrixType> modified_gram_schmidt(const matrixType& data, scalarType tolerance=evaluate_safe_tolerance()){
+MGS<matrixType> modified_gram_schmidt(
+    const matrixType& data,
+    std::optional<scalarType> marginOfError = std::nullopt)
+{
     auto numberOfRows = data.get_number_of_rows();
     auto numberOfColumns = data.get_number_of_columns();
     matrixType Q(numberOfRows,numberOfColumns), R(numberOfColumns,numberOfColumns);
@@ -27,6 +30,7 @@ MGS<matrixType> modified_gram_schmidt(const matrixType& data, scalarType toleran
         auto vj = V.column_view(j);
         auto qj = Q.column_view(j);
         R(j,j) = norm(vj);
+        auto tolerance=evaluate_safe_tolerance(marginOfError);
         if (R(j,j) < tolerance) {
             throw std::runtime_error("MGS: Matrix is ill-conditioned or rank-deficient.");
         }
