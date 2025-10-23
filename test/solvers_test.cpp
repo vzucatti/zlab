@@ -17,3 +17,16 @@ TEST(Solver, BackwardSubstitution){
         EXPECT_NEAR(x[i], i+1, tolerance);
     }
 }
+
+TEST(Solver, LinearLeastSquares){
+    zlab::ZMatrix A(3,2,1);
+    A(1,1) = 2; A(2,1) = 3;
+    zlab::ZVector b(3), x(2), exactSolution(2);
+    b[0] = 6;
+    exactSolution[0] = 8; exactSolution[1] = -3;
+    zlab::linear_least_squares(A,b,x);
+    auto tolerance = zlab::evaluate_safe_tolerance();
+    for(auto i=0; i<x.size(); ++i){
+        EXPECT_NEAR(x[i], exactSolution[i], tolerance);
+    }
+}
