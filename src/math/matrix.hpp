@@ -195,6 +195,15 @@ void gemm(
     }
 }
 
+template <MatrixConcept matrixType>
+void scale(matrixType& m, scalarType a){
+    for(auto i=0; i < m.get_number_of_rows(); i++){
+        for(auto j=0; j < m.get_number_of_columns(); j++){
+            m(i,j) *=  a;
+        }
+    }
+}
+
 #ifdef ADD_EIGEN
 
 class EigenMatrix{
