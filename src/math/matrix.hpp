@@ -186,11 +186,10 @@ void gemm(
     assert(C.get_number_of_columns() == B.get_number_of_columns());
     for(auto i=0; i<A.get_number_of_rows(); ++i){
         for(auto k=0; k<C.get_number_of_columns(); ++k){
-            auto sum = b * C(i, k);
+            C(i,k) *= b;
             for(auto j=0; j<B.get_number_of_rows(); ++j){
-               sum += a * A(i,j) * B(j,k);
+               C(i, k) += a * A(i,j) * B(j,k);
             }
-            C(i, k) = sum;
         }
     }
 }
