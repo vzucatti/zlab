@@ -194,6 +194,36 @@ void gemm(
     }
 }
 
+template <MatrixConcept MatrixType, VectorConcept VectorTypeX, VectorConcept VectorTypeY>
+void gemv(
+    const MatrixType& M,
+    const VectorTypeX& x,
+    VectorTypeY& y,
+    scalarType a=1,
+    scalarType b=0,
+    bool isTranspose=true)
+{
+    if (isTranspose){
+        assert(x.size() == M.get_number_of_rows());
+        assert(y.size() == M.get_number_of_columns());
+        for(auto i=0; i < y.size(); ++i){
+            y[i] *= b;
+            for(auto j=0; j < x.size(); ++j){
+                y[i] += a * M(j,i) * x[j];
+            }
+        }
+    } else{
+        assert(y.size() == M.get_number_of_rows());
+        assert(x.size() == M.get_number_of_columns());
+        for(auto i=0; i < y.size(); ++i){
+            y[i] *= b;
+            for(auto j=0; j < x.size(); ++j){
+                y[i] += a * M(i,j) * x[j];
+            }
+        }
+    }
+}
+
 template <MatrixConcept matrixType>
 void scale(matrixType& m, scalarType a){
     for(auto i=0; i < m.get_number_of_rows(); i++){
