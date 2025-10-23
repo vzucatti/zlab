@@ -173,6 +173,18 @@ TEST(ZMatrix, fill){
     }
 }
 
+TEST(ZMatrix, scale){
+    zlab::ZMatrix m(2,2,1);
+    zlab::scalarType expectedValue{2};
+    zlab::scale(m,expectedValue);
+    auto tolerance = zlab::evaluate_safe_tolerance();
+    for(auto i=0; i < m.get_number_of_rows(); i++){
+        for(auto j=0; j < m.get_number_of_columns(); j++){
+            EXPECT_NEAR(m(i,j), expectedValue, tolerance); 
+        }
+    }
+}
+
 TEST(ZMatrix, gemm){
     zlab::ZMatrix A(3,4), B(4,2), C(3,2,1), R(3,2);
     for (auto i=0; i<A.get_number_of_rows(); ++i){
