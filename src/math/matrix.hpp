@@ -173,11 +173,11 @@ concept MatrixConcept = requires(const matrixType m, positiveIntegerType i, posi
     m(i,j);
 };
 
-template <typename matrixType>
+template <MatrixConcept matrixTypeA, MatrixConcept matrixTypeB, MatrixConcept matrixTypeC>
 void gemm(
-    const matrixType& A, 
-    const matrixType& B, 
-    matrixType& C, 
+    const matrixTypeA& A, 
+    const matrixTypeB& B, 
+    matrixTypeC& C, 
     scalarType a=1,
     scalarType b=1)
 {
