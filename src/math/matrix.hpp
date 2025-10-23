@@ -167,6 +167,13 @@ void cross(const vectorTypeA& a, const vectorTypeB& b, vectorTypeC& c) {
 }
 
 template <typename matrixType>
+concept MatrixConcept = requires(const matrixType m, positiveIntegerType i, positiveIntegerType j) {
+    m.get_number_of_rows();
+    m.get_number_of_columns();
+    m(i,j);
+};
+
+template <typename matrixType>
 void gemm(
     const matrixType& A, 
     const matrixType& B, 
