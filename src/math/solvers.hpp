@@ -43,4 +43,17 @@ void backward_substitution(
     } while (i >0);
 }
 
+template <typename matrixType, VectorConcept vectorTypeB, VectorConcept vectorTypeX>
+void linear_least_squares(
+    const matrixType& A,
+    const vectorTypeB& b,
+    vectorTypeX& x,
+    std::optional<scalarType> marginOfError = std::nullopt)
+{
+    auto [Q, R] = modified_gram_schmidt(A,marginOfError);
+    vectorTypeX c(x.size());
+    gemv(Q,b,c,1,0,true);
+    backward_substitution(R,c,x,marginOfError);
+}
+
 } // end zlab namespace
