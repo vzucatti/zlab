@@ -8,16 +8,11 @@ set_property(CACHE CMAKE_CXX_STANDARD PROPERTY STRINGS ${POSSIBLE_CXX_STANDARDS}
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-add_executable( program main.cpp )
-
 add_subdirectory( src )
-target_link_libraries( program PRIVATE zlab )
 
 option( ADD_EIGEN TRUE )
 if ( ADD_EIGEN )
     find_package(Eigen3 REQUIRED)
-    target_compile_definitions( program PRIVATE ADD_EIGEN=1)
-    target_link_libraries( program PRIVATE Eigen3::Eigen )
 endif()
 
 option(BUILD_TESTING "Build unit tests" ON)
