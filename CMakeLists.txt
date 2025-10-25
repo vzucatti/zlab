@@ -21,4 +21,7 @@ if ( BUILD_TESTING )
     add_subdirectory( test )
 endif()
 
-add_subdirectory( examples )
+option( BUILD_EXAMPLES "Build examples" ON )
+if( BUILD_EXAMPLES)
+    add_subdirectory( examples )
+endif()
