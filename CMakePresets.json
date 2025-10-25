@@ -9,6 +9,7 @@
       "cacheVariables": {
         "CMAKE_CXX_STANDARD": "20",
         "ADD_EIGEN": "TRUE",
+        "USE_SYSTEM_EIGEN": "ON",
         "BUILD_TESTING": "ON",
         "BUILD_EXAMPLES": "ON",
         "USE_SYSTEM_GTEST" : "ON"

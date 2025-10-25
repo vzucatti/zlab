@@ -12,7 +12,22 @@ add_subdirectory( src )
 
 option( ADD_EIGEN TRUE )
 if( ADD_EIGEN )
-    find_package( Eigen3 REQUIRED )
+    option( USE_SYSTEM_EIGEN ON )
+    if( USE_SYSTEM_EIGEN )
+        find_package( Eigen3 CONFIG QUIET )
+    endif()
+    if( TARGET Eigen3::Eigen )
+        message( STATUS "Using Eigen provided by the system or package manager." )
+    else()
+        message( STATUS "Fetching Eigen and making it available." )
+        include( FetchContent )
+        FetchContent_Declare(
+            eigen
+            GIT_REPOSITORY https://gitlab.com/libeigen/eigen.git
+            GIT_TAG     3.4.0
+        )
+        FetchContent_MakeAvailable( eigen )
+    endif()
 endif()
 
 option( BUILD_TESTING "Build unit tests" ON )
