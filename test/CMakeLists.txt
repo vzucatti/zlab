@@ -1,5 +1,22 @@
 
-find_package( GTest CONFIG REQUIRED )
+option( USE_SYSTEM_GTEST ON )
+
+if( USE_SYSTEM_GTEST )
+    find_package( GTest CONFIG REQUIRED QUIET COMPONENTS gtest gtest_main )
+endif()
+
+if( TARGET GTest::gtest )
+    message( STATUS "Using GoogleTest provided by the system or package manager." )
+else()
+    message( STATUS "Fetching GoogleTest and making it available.")
+    include( FetchContent )
+    FetchContent_Declare(
+        googletest
+        URL https://github.com/google/googletest/archive/refs/tags/v1.14.0.zip
+        DOWNLOAD_EXTRACT_TIMESTAMP TRUE
+    )
+    FetchContent_MakeAvailable( googletest )
+endif()
 
 add_executable( 
     unit_tests
