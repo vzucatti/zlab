@@ -150,6 +150,8 @@ scalarType norm(vectorType&v, scalarType p=2) {
     }
 }
 
+// DOT (Vector Dot Product/Inner Product)
+// This function computes the scalar result of transpose(x) * y.
 template <VectorConcept vectorTypeX, VectorConcept vectorTypeY>
 scalarType dot(const vectorTypeX& x, const vectorTypeY& y) {
     assert(x.size() == y.size());
