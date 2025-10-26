@@ -179,6 +179,9 @@ concept MatrixConcept = requires(const matrixType m, positiveIntegerType i, posi
     m(i,j);
 };
 
+// GEMM (General Matrix-Matrix Multiplication)
+// This function computes the operation C = a * A * B + b * C for three matrices 
+// and two scalars.
 template <MatrixConcept matrixTypeA, MatrixConcept matrixTypeB, MatrixConcept matrixTypeC>
 void gemm(
     const matrixTypeA& A, 
