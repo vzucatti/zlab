@@ -40,7 +40,7 @@ The project uses CMake with a pre-configured `CMakePresets.json` file, which sim
 
 ### 1. Initial Setup and Configuration
 
-Use the `default-config` preset to configure the project. This command automatically sets the build directory to `../build` and enables C++20, Eigen support, and unit testing.
+Use the `default-config` preset to configure the project. This command automatically sets the build directory to `../build` and enables C++20, and unit testing.
 
 ```bash
 # Creates the build environment (e.g., Makefiles) in the 'build/' folder

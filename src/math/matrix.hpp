@@ -8,10 +8,6 @@
 #include <vector>
 #include <span>
 
-#ifdef ADD_EIGEN
-    #include <eigen3/Eigen/Dense>
-#endif
-
 #include "utilities.hpp"
 #include "core.hpp"
 
@@ -231,47 +227,6 @@ void scale(matrixType& m, scalarType a){
             m(i,j) *=  a;
         }
     }
-}
-
-#ifdef ADD_EIGEN
-
-class EigenMatrix{
-        Eigen::Matrix<scalarType, Eigen::Dynamic, Eigen::Dynamic> matrix;
-    public:
-        EigenMatrix() = delete;
-        EigenMatrix(const EigenMatrix&) = delete;
-        EigenMatrix(integerType, integerType, scalarType=0);
-        
-        void print() const { std::cout << matrix << std::endl; }
-};
-
-EigenMatrix::EigenMatrix(
-    integerType numberOfRows,
-    integerType numberOfColumns,
-    scalarType fillValue) : 
-    matrix(numberOfRows, numberOfColumns) {
-    assert(numberOfRows > 0 && numberOfColumns > 0);
-    matrix.setConstant(fillValue);
-}
-
-#endif
-
-template <typename matrixType>
-class Matrix{
-        matrixType matrix;
-    public:
-        Matrix(integerType, integerType, scalarType=0);
-        
-        void print() const { matrix.print(); }
-};
-
-template <typename matrixType>
-Matrix<matrixType>::Matrix(
-    integerType numberOfRows, 
-    integerType numberOfColumns,
-    scalarType fillValue) : 
-    matrix(numberOfRows, numberOfColumns, fillValue){
-    assert(numberOfRows > 0 && numberOfColumns > 0);
 }
 
 } // end namespace zlab
