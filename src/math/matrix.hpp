@@ -122,6 +122,8 @@ void aypx(scalarType a, vectorTypeX& y, const vectorTypeY& x){
     }
 }
 
+// SCALE (General Vector Scaling)
+// This function computes the operation v = a * v for a vector and a scalar.
 template <VectorConcept vectorType>
 void scale(vectorType& v, scalarType a){
     for(auto i=0; i < v.size(); i++){
