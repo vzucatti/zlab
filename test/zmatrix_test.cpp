@@ -173,6 +173,20 @@ TEST(ZMatrix, fill){
     }
 }
 
+TEST(ZMatrix, IdentityMatrix){
+    auto I = zlab::identity_matrix(3);
+    auto tolerance = zlab::evaluate_safe_tolerance();
+    for (auto i=0; i < I.get_number_of_rows(); i++){
+        for (auto j=0; j < I.get_number_of_columns(); j++){
+            if(i == j){
+                EXPECT_NEAR(I(i,j), 1, tolerance);
+            } else{
+                EXPECT_NEAR(I(i,j), 0, tolerance);
+            }
+        }
+    }
+}
+
 TEST(ZMatrix, scale){
     zlab::ZMatrix m(2,2,1);
     zlab::scalarType expectedValue{2};
