@@ -112,6 +112,8 @@ void axpby(scalarType a, const vectorTypeX& x, scalarType b, vectorTypeY& y){
     }
 }
 
+// AYPX (General Vector Scaling and Addition)
+// This function computes the operation y = a * y + x for two vectors and a scalar.
 template <VectorConcept vectorTypeX, VectorConcept vectorTypeY>
 void aypx(scalarType a, vectorTypeX& y, const vectorTypeY& x){
     assert(x.size() == y.size());
