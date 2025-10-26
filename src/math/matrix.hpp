@@ -160,6 +160,8 @@ scalarType dot(const vectorTypeX& x, const vectorTypeY& y) {
     return result;
 }
 
+// CROSS (Vector Cross Product)
+// This function computes the cross product c = a x b for two 3D vectors.
 template <VectorConcept vectorTypeA, VectorConcept vectorTypeB, VectorConcept vectorTypeC>
 void cross(const vectorTypeA& a, const vectorTypeB& b, vectorTypeC& c) {
     assert(a.size() == 3);
