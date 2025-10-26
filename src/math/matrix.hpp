@@ -48,6 +48,8 @@ class ZMatrix{
         void print() const;
 };
 
+ZMatrix identity_matrix(integerType);
+
 class ColumnView {
     private:
         ZMatrix& matrix;

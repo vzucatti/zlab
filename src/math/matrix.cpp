@@ -45,6 +45,16 @@ ZMatrix ZMatrix::copy() const {
     return clone;
 }
 
+ZMatrix identity_matrix(integerType numberOfRows){
+    assert(numberOfRows > 0);
+    auto numberOfColumns = numberOfRows;
+    ZMatrix identity_matrix(numberOfRows, numberOfColumns);
+    for(auto i=0; i < numberOfRows; ++i){
+        identity_matrix(i,i) = 1;
+    }
+    return identity_matrix;
+}
+
 ZVector ZVector::copy() const {
     ZVector clone(size());
     clone.matrix = matrix;
