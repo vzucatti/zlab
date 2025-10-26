@@ -235,6 +235,8 @@ void gemv(
     }
 }
 
+// SCALE (General Matrix Scaling)
+// This function computes the operation M = a * M for a matrix and a scalar.
 template <MatrixConcept matrixType>
 void scale(matrixType& m, scalarType a){
     for(auto i=0; i < m.get_number_of_rows(); i++){
