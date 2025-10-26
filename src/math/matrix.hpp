@@ -203,6 +203,8 @@ void gemm(
     }
 }
 
+// GEMV (General Matrix-Vector Multiplication)
+// This function computes y = a * (M or M^T) * x + b * y with an optional transpose flag.
 template <MatrixConcept MatrixType, VectorConcept VectorTypeX, VectorConcept VectorTypeY>
 void gemv(
     const MatrixType& M,
