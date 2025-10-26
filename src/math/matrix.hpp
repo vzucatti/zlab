@@ -179,6 +179,9 @@ void cross(const vectorTypeA& a, const vectorTypeB& b, vectorTypeC& c) {
     c[2] = a[0] * b[1] - a[1] * b[0];
 }
 
+// MATRIX CONCEPT
+// This concept enforces that a type must behave like a standard matrix,
+// requiring dimension access (rows/columns) and indexed element access (m(i, j)).
 template <typename matrixType>
 concept MatrixConcept = requires(const matrixType m, positiveIntegerType i, positiveIntegerType j) {
     m.get_number_of_rows();
