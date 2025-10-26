@@ -92,6 +92,8 @@ concept VectorConcept = requires(const vectorType v, positiveIntegerType i) {
     v[i];
 };
 
+// AXPY (General Vector Scaling and Addition)
+// This function computes the operation y = y + a * x for two vectors and a scalar.
 template <VectorConcept vectorTypeX, VectorConcept vectorTypeY>
 void axpy(scalarType a, const vectorTypeX& x, vectorTypeY& y){
     assert(x.size() == y.size());
