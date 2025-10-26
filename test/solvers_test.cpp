@@ -32,6 +32,22 @@ TEST(Solver, ModifiedGramSchmidt){
     }
 }
 
+TEST(Solver, ModifiedGramSchmidtIllPosedMatrix){
+    zlab::ZMatrix A(3,2,1);
+    zlab::scalarType errorMargin = 1e3;
+    auto verySmallNumber = zlab::evaluate_safe_tolerance(errorMargin);
+    A(2,0) = verySmallNumber;
+    auto [Q, R] = modified_gram_schmidt(A);
+    auto solution = A.copy();
+    gemm(Q,R,solution,1,0);
+    auto tolerance = zlab::evaluate_safe_tolerance();
+    for(auto i=0; i < A.get_number_of_rows(); ++i){
+        for(auto j=0; j < A.get_number_of_columns(); j++){
+            EXPECT_NEAR(A(i,j), solution(i,j), tolerance);
+        }
+    }
+}
+
 TEST(Solver, LinearLeastSquares){
     zlab::ZMatrix A(3,2,1);
     A(1,1) = 2; A(2,1) = 3;
