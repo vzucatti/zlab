@@ -86,6 +86,9 @@ class ZVector {
         void print() const { matrix.print(); };
 };
 
+// VECTOR CONCEPT
+// This concept enforces that a type must behave like a standard vector,
+// requiring size access (v.size()) and indexed element access (v[i]).
 template <typename vectorType>
 concept VectorConcept = requires(const vectorType v, positiveIntegerType i) {
     v.size();
