@@ -131,6 +131,8 @@ void scale(vectorType& v, scalarType a){
     }
 }
 
+// NORM (Vector Norm/Magnitude Calculation)
+// This function computes the Lp-norm (including L-infinity norm) of a vector.
 template <VectorConcept vectorType>
 scalarType norm(vectorType&v, scalarType p=2) {
     if (p == std::numeric_limits<scalarType>::infinity()) {
