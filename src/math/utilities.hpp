@@ -6,9 +6,6 @@
 
 #include "core.hpp"
 
-//TODO: write benchmark
-//TODO: write tests: check for negative and positive
-
 namespace zlab{
 
 template<class T,
