@@ -65,6 +65,7 @@ class ZVector {
     private:
         ZMatrix matrix;
     public:
+        using matrixType = ZMatrix;
         ZVector() = delete;
         ZVector(const ZVector&) = delete;
         ZVector(ZVector&&);
