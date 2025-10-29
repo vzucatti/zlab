@@ -66,4 +66,27 @@ void linear_solver(
     linear_least_squares(A,b,x,marginOfError);
 }
 
+template <typename functionTypeF, typename functionTypeDF, VectorConcept vectorType>
+auto newton_solver(
+    const vectorType& x0,
+    const functionTypeF& F,
+    const functionTypeDF& dF,
+    scalarType tolerance=1e-8,
+    integerType iterationLimit = 50)
+{
+    using matrixType = typename vectorType::matrixType;
+    vectorType Fb(x0.size()), dx(x0.size());
+    matrixType Jb(x0.size(),x0.size());
+    auto xk = x0.copy();
+    for(auto i=0; i<iterationLimit; ++i){
+        F(xk, Fb);
+        scale(Fb,-1); // F = - 1 * F
+        if (norm(Fb) < tolerance) break;
+        dF(F,xk,Jb);
+        linear_solver(Jb,Fb,dx);
+        axpy(1.0, dx, xk); // xk = dx + xk
+    }
+    return xk;
+}
+
 } // end zlab namespace
