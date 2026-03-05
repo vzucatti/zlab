@@ -1,7 +1,6 @@
 
 #include "solvers.hpp"
 
-namespace zlab {
-
-
-} // end zlab namespace
+namespace zlab
+{
+} // namespace zlab

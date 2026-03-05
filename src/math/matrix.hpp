@@ -1,91 +1,120 @@
 
 #pragma once
 
-#include <stdexcept>
-#include <concepts>
 #include <cassert>
+#include <concepts>
 #include <limits>
-#include <vector>
 #include <span>
+#include <stdexcept>
+#include <vector>
 
-#include "utilities.hpp"
 #include "core.hpp"
+#include "utilities.hpp"
 
-namespace zlab{
+namespace zlab
+{
 
 class ColumnView;
 
-class ZMatrix{
+class ZMatrix
+{
     private:
         std::vector<scalarType> data;
         positiveIntegerType numberOfRows;
         positiveIntegerType numberOfColumns;
-        
-        positiveIntegerType compute_vector_index(integerType, integerType) const;
+
+        positiveIntegerType
+            compute_vector_index(integerType, integerType) const;
+
     public:
         ZMatrix() = delete;
-        ZMatrix(const ZMatrix&) = delete;
-        ZMatrix(ZMatrix&&) noexcept;
-        ZMatrix(integerType, integerType, scalarType=0);
+        ZMatrix(const ZMatrix &) = delete;
+        ZMatrix(ZMatrix &&) noexcept;
+        ZMatrix(integerType, integerType, scalarType = 0);
         virtual ~ZMatrix() = default;
-        ZMatrix& operator=(const ZMatrix&);
-        ZMatrix& operator=(ZMatrix&&) noexcept;
-        
+        ZMatrix &operator=(const ZMatrix &);
+        ZMatrix &operator=(ZMatrix &&) noexcept;
+
         ZMatrix copy() const;
-        
+
         void fill(scalarType);
-        
-        scalarType& operator()(integerType, integerType);
-        const scalarType& operator()(integerType, integerType) const;
-        
+
+        scalarType &operator()(integerType, integerType);
+        const scalarType &operator()(integerType, integerType) const;
+
         std::span<scalarType> row_view(integerType);
         ColumnView column_view(integerType);
 
-        positiveIntegerType get_number_of_rows() const { return numberOfRows; }
-        positiveIntegerType get_number_of_columns() const { return numberOfColumns; }
+        positiveIntegerType get_number_of_rows() const
+        {
+            return numberOfRows;
+        }
+        positiveIntegerType get_number_of_columns() const
+        {
+            return numberOfColumns;
+        }
         positiveIntegerType get_number_of_elements() const;
-        
+
         void print() const;
 };
 
 ZMatrix identity_matrix(integerType);
 
-class ColumnView {
+class ColumnView
+{
     private:
-        ZMatrix& matrix;
+        ZMatrix &matrix;
         positiveIntegerType columnIndex;
+
     public:
-        ColumnView(ZMatrix&, integerType);
-        scalarType& operator[](integerType);
-        const scalarType& operator[](integerType) const;
-        positiveIntegerType size() const { return matrix.get_number_of_rows(); }
+        ColumnView(ZMatrix &, integerType);
+        scalarType &operator[](integerType);
+        const scalarType &operator[](integerType) const;
+        positiveIntegerType size() const
+        {
+            return matrix.get_number_of_rows();
+        }
 };
 
-class ZVector {
+class ZVector
+{
     private:
         ZMatrix matrix;
+
     public:
         ZVector() = delete;
-        ZVector(const ZVector&) = delete;
-        ZVector(ZVector&&);
-        ZVector(integerType, scalarType=0);
+        ZVector(const ZVector &) = delete;
+        ZVector(ZVector &&);
+        ZVector(integerType, scalarType = 0);
         virtual ~ZVector() = default;
-        ZVector& operator=(const ZVector&);
-        ZVector& operator=(ZVector&&);
-        
+        ZVector &operator=(const ZVector &);
+        ZVector &operator=(ZVector &&);
+
         ZVector copy() const;
-        
+
         void fill(scalarType);
 
-        ZVector& operator=(const std::span<scalarType>);
-        ZVector& operator=(const ColumnView&);
+        ZVector &operator=(const std::span<scalarType>);
+        ZVector &operator=(const ColumnView &);
 
-        scalarType& operator[](integerType i) { return matrix(i,0); }
-        const scalarType& operator[](integerType i) const { return matrix(i, 0); }
+        scalarType &operator[](integerType i)
+        {
+            return matrix(i, 0);
+        }
+        const scalarType &operator[](integerType i) const
+        {
+            return matrix(i, 0);
+        }
 
-        positiveIntegerType size() const{ return matrix.get_number_of_rows(); }
-        
-        void print() const { matrix.print(); };
+        positiveIntegerType size() const
+        {
+            return matrix.get_number_of_rows();
+        }
+
+        void print() const
+        {
+            matrix.print();
+        };
 };
 
 // VECTOR CONCEPT
@@ -98,31 +127,40 @@ concept VectorConcept = requires(const vectorType v, positiveIntegerType i) {
 };
 
 // AXPY (General Vector Scaling and Addition)
-// This function computes the operation y = y + a * x for two vectors and a scalar.
+// This function computes the operation y = y + a * x for two vectors and a
+// scalar.
 template <VectorConcept vectorTypeX, VectorConcept vectorTypeY>
-void axpy(scalarType a, const vectorTypeX& x, vectorTypeY& y){
+void axpy(scalarType a, const vectorTypeX &x, vectorTypeY &y)
+{
     assert(x.size() == y.size());
-    for(auto i=0; i < x.size(); i++){
-        y[i] +=  a * x[i];
+    for (auto i = 0; i < x.size(); i++)
+    {
+        y[i] += a * x[i];
     }
 }
 
 // AXPBY (General Vector Scaling and Addition)
-// This function computes the operation y = a * x + b * y for two vectors and two scalars.
+// This function computes the operation y = a * x + b * y for two vectors and
+// two scalars.
 template <VectorConcept vectorTypeX, VectorConcept vectorTypeY>
-void axpby(scalarType a, const vectorTypeX& x, scalarType b, vectorTypeY& y){
+void axpby(scalarType a, const vectorTypeX &x, scalarType b, vectorTypeY &y)
+{
     assert(x.size() == y.size());
-    for(auto i=0; i < x.size(); i++){
-        y[i] =  a * x[i] + b * y[i];
+    for (auto i = 0; i < x.size(); i++)
+    {
+        y[i] = a * x[i] + b * y[i];
     }
 }
 
 // AYPX (General Vector Scaling and Addition)
-// This function computes the operation y = a * y + x for two vectors and a scalar.
+// This function computes the operation y = a * y + x for two vectors and a
+// scalar.
 template <VectorConcept vectorTypeX, VectorConcept vectorTypeY>
-void aypx(scalarType a, vectorTypeX& y, const vectorTypeY& x){
+void aypx(scalarType a, vectorTypeX &y, const vectorTypeY &x)
+{
     assert(x.size() == y.size());
-    for(auto i=0; i < x.size(); i++){
+    for (auto i = 0; i < x.size(); i++)
+    {
         y[i] = a * y[i] + x[i];
     }
 }
@@ -130,40 +168,54 @@ void aypx(scalarType a, vectorTypeX& y, const vectorTypeY& x){
 // SCALE (General Vector Scaling)
 // This function computes the operation v = a * v for a vector and a scalar.
 template <VectorConcept vectorType>
-void scale(vectorType& v, scalarType a){
-    for(auto i=0; i < v.size(); i++){
-        v[i] *=  a;
+void scale(vectorType &v, scalarType a)
+{
+    for (auto i = 0; i < v.size(); i++)
+    {
+        v[i] *= a;
     }
 }
 
 // NORM (Vector Norm/Magnitude Calculation)
 // This function computes the Lp-norm (including L-infinity norm) of a vector.
 template <VectorConcept vectorType>
-scalarType norm(vectorType&v, scalarType p=2) {
-    if (p == std::numeric_limits<scalarType>::infinity()) {
+scalarType norm(vectorType &v, scalarType p = 2)
+{
+    if (p == std::numeric_limits<scalarType>::infinity())
+    {
         scalarType max_abs = 0.0;
-        for (auto i=0; i < v.size(); ++i){
+        for (auto i = 0; i < v.size(); ++i)
+        {
             max_abs = std::max(max_abs, std::abs(v[i]));
         }
         return max_abs;
-    } else if (p > 0){
+    }
+    else if (p > 0)
+    {
         scalarType sumOfPowers{0};
-        for (auto i=0; i < v.size(); ++i){
+        for (auto i = 0; i < v.size(); ++i)
+        {
             sumOfPowers += zlab::pow(std::abs(v[i]), p);
         }
         return zlab::pow(sumOfPowers, 1.0 / p);
-    } else {
-        throw std::invalid_argument("p must be a positive integer (p > 0) or infinity (std::numeric_limits<double>::infinity()).");
+    }
+    else
+    {
+        throw std::invalid_argument(
+            "p must be a positive integer (p > 0) or infinity "
+            "(std::numeric_limits<double>::infinity()).");
     }
 }
 
 // DOT (Vector Dot Product/Inner Product)
 // This function computes the scalar result of transpose(x) * y.
 template <VectorConcept vectorTypeX, VectorConcept vectorTypeY>
-scalarType dot(const vectorTypeX& x, const vectorTypeY& y) {
+scalarType dot(const vectorTypeX &x, const vectorTypeY &y)
+{
     assert(x.size() == y.size());
     scalarType result{0};
-    for(auto i=0; i < x.size(); i++){
+    for (auto i = 0; i < x.size(); i++)
+    {
         result += x[i] * y[i];
     }
     return result;
@@ -171,8 +223,12 @@ scalarType dot(const vectorTypeX& x, const vectorTypeY& y) {
 
 // CROSS (Vector Cross Product)
 // This function computes the cross product c = a x b for two 3D vectors.
-template <VectorConcept vectorTypeA, VectorConcept vectorTypeB, VectorConcept vectorTypeC>
-void cross(const vectorTypeA& a, const vectorTypeB& b, vectorTypeC& c) {
+template <
+    VectorConcept vectorTypeA,
+    VectorConcept vectorTypeB,
+    VectorConcept vectorTypeC>
+void cross(const vectorTypeA &a, const vectorTypeB &b, vectorTypeC &c)
+{
     assert(a.size() == 3);
     assert(b.size() == 3);
     assert(c.size() == 3);
@@ -183,65 +239,84 @@ void cross(const vectorTypeA& a, const vectorTypeB& b, vectorTypeC& c) {
 
 // MATRIX CONCEPT
 // This concept enforces that a type must behave like a standard matrix,
-// requiring dimension access (rows/columns) and indexed element access (m(i, j)).
+// requiring dimension access (rows/columns) and indexed element access (m(i,
+// j)).
 template <typename matrixType>
-concept MatrixConcept = requires(const matrixType m, positiveIntegerType i, positiveIntegerType j) {
-    m.get_number_of_rows();
-    m.get_number_of_columns();
-    m(i,j);
-};
+concept MatrixConcept =
+    requires(const matrixType m, positiveIntegerType i, positiveIntegerType j) {
+        m.get_number_of_rows();
+        m.get_number_of_columns();
+        m(i, j);
+    };
 
 // GEMM (General Matrix-Matrix Multiplication)
-// This function computes the operation C = a * A * B + b * C for three matrices 
+// This function computes the operation C = a * A * B + b * C for three matrices
 // and two scalars.
-template <MatrixConcept matrixTypeA, MatrixConcept matrixTypeB, MatrixConcept matrixTypeC>
+template <
+    MatrixConcept matrixTypeA,
+    MatrixConcept matrixTypeB,
+    MatrixConcept matrixTypeC>
 void gemm(
-    const matrixTypeA& A, 
-    const matrixTypeB& B, 
-    matrixTypeC& C, 
-    scalarType a=1,
-    scalarType b=1)
+    const matrixTypeA &A,
+    const matrixTypeB &B,
+    matrixTypeC &C,
+    scalarType a = 1,
+    scalarType b = 1)
 {
     assert(C.get_number_of_rows() == A.get_number_of_rows());
     assert(A.get_number_of_columns() == B.get_number_of_rows());
     assert(C.get_number_of_columns() == B.get_number_of_columns());
-    for(auto i=0; i<A.get_number_of_rows(); ++i){
-        for(auto k=0; k<C.get_number_of_columns(); ++k){
-            C(i,k) *= b;
-            for(auto j=0; j<B.get_number_of_rows(); ++j){
-               C(i, k) += a * A(i,j) * B(j,k);
+    for (auto i = 0; i < A.get_number_of_rows(); ++i)
+    {
+        for (auto k = 0; k < C.get_number_of_columns(); ++k)
+        {
+            C(i, k) *= b;
+            for (auto j = 0; j < B.get_number_of_rows(); ++j)
+            {
+                C(i, k) += a * A(i, j) * B(j, k);
             }
         }
     }
 }
 
 // GEMV (General Matrix-Vector Multiplication)
-// This function computes y = a * (M or M^T) * x + b * y with an optional transpose flag.
-template <MatrixConcept MatrixType, VectorConcept VectorTypeX, VectorConcept VectorTypeY>
+// This function computes y = a * (M or M^T) * x + b * y with an optional
+// transpose flag.
+template <
+    MatrixConcept MatrixType,
+    VectorConcept VectorTypeX,
+    VectorConcept VectorTypeY>
 void gemv(
-    const MatrixType& M,
-    const VectorTypeX& x,
-    VectorTypeY& y,
-    scalarType a=1,
-    scalarType b=0,
-    bool isTranspose=true)
+    const MatrixType &M,
+    const VectorTypeX &x,
+    VectorTypeY &y,
+    scalarType a = 1,
+    scalarType b = 0,
+    bool isTranspose = true)
 {
-    if (isTranspose){
+    if (isTranspose)
+    {
         assert(x.size() == M.get_number_of_rows());
         assert(y.size() == M.get_number_of_columns());
-        for(auto i=0; i < y.size(); ++i){
+        for (auto i = 0; i < y.size(); ++i)
+        {
             y[i] *= b;
-            for(auto j=0; j < x.size(); ++j){
-                y[i] += a * M(j,i) * x[j];
+            for (auto j = 0; j < x.size(); ++j)
+            {
+                y[i] += a * M(j, i) * x[j];
             }
         }
-    } else{
+    }
+    else
+    {
         assert(y.size() == M.get_number_of_rows());
         assert(x.size() == M.get_number_of_columns());
-        for(auto i=0; i < y.size(); ++i){
+        for (auto i = 0; i < y.size(); ++i)
+        {
             y[i] *= b;
-            for(auto j=0; j < x.size(); ++j){
-                y[i] += a * M(i,j) * x[j];
+            for (auto j = 0; j < x.size(); ++j)
+            {
+                y[i] += a * M(i, j) * x[j];
             }
         }
     }
@@ -250,10 +325,13 @@ void gemv(
 // SCALE (General Matrix Scaling)
 // This function computes the operation M = a * M for a matrix and a scalar.
 template <MatrixConcept matrixType>
-void scale(matrixType& m, scalarType a){
-    for(auto i=0; i < m.get_number_of_rows(); i++){
-        for(auto j=0; j < m.get_number_of_columns(); j++){
-            m(i,j) *=  a;
+void scale(matrixType &m, scalarType a)
+{
+    for (auto i = 0; i < m.get_number_of_rows(); i++)
+    {
+        for (auto j = 0; j < m.get_number_of_columns(); j++)
+        {
+            m(i, j) *= a;
         }
     }
 }
