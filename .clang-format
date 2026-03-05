@@ -1,1 +1,14 @@
-BasedOnStyle: Google
+BasedOnStyle: LLVM
+IndentWidth: 4
+ColumnLimit: 80
+AllowShortFunctionsOnASingleLine: None
+BreakBeforeBraces: Allman
+SpaceBeforeParens: ControlStatements
+AlwaysBreakTemplateDeclarations: true
+SortIncludes: true
+BinPackParameters: false
+BinPackArguments: false
+AlignAfterOpenBracket: AlwaysBreak
+IndentAccessModifiers: true
+MaxEmptyLinesToKeep: 1
+UseTab: Never
