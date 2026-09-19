@@ -1,4 +1,3 @@
-
 add_library(zlab_math STATIC
     rbf.cpp
     utilities.cpp

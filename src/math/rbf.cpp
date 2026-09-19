@@ -1,4 +1,3 @@
-
 #include "rbf.hpp"
 
 namespace zlab

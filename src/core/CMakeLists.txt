@@ -1,4 +1,3 @@
-
 add_library(zlab_core STATIC
   numeric_types.cpp
 )

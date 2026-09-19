@@ -1,4 +1,3 @@
-
 #include "numeric_types.hpp"
 
 #include <limits>

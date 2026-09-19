@@ -1,4 +1,3 @@
-
 #include "core.hpp"
 #include "math.hpp"
 #include "gtest/gtest.h"

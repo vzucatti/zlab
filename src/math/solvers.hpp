@@ -1,4 +1,3 @@
-
 #pragma one
 
 #include <cmath>

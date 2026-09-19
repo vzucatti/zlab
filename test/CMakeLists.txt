@@ -1,4 +1,3 @@
-
 option( USE_SYSTEM_GTEST ON )
 
 if( USE_SYSTEM_GTEST )

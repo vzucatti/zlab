@@ -1,4 +1,3 @@
-
 #include "solvers.hpp"
 
 namespace zlab

@@ -1,4 +1,3 @@
-
 #include "math.hpp"
 
 #include "core.hpp"
